@@ -31,19 +31,19 @@ DROP TABLE IF EXISTS `auction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `auction` (
-  `auctionID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(2000) NOT NULL,
-  `categoryID` int(11) DEFAULT NULL,
+  `categoryId` int(11) DEFAULT NULL,
   `endDate` date NOT NULL,
   `currentBid` double DEFAULT NULL,
   `bid_user` int(11) DEFAULT NULL,
   `bid_placed` datetime DEFAULT NULL,
   `user` int(11) NOT NULL,
   `file` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`auctionID`),
-  KEY `categoryID_idx` (`categoryID`),
-  CONSTRAINT `categoryID` FOREIGN KEY (`categoryID`) REFERENCES `category` (`categoryID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`id`),
+  KEY `categoryID_idx` (`categoryId`),
+  CONSTRAINT `categoryID` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,9 +92,9 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
-  `categoryID` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`categoryID`)
+  PRIMARY KEY (`categoryId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -630,7 +630,7 @@ CREATE TABLE `global_priv` (
 
 LOCK TABLES `global_priv` WRITE;
 /*!40000 ALTER TABLE `global_priv` DISABLE KEYS */;
-INSERT INTO `global_priv` VALUES ('localhost','mariadb.sys','{\"access\":0,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"\",\"account_locked\":true,\"password_last_changed\":0}'),('localhost','root','{\"access\":18446744073709551615,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*6A73561D1E49479B0E89BC6072145D20FA359357\",\"password_last_changed\":1664797216}'),('%','root','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*6A73561D1E49479B0E89BC6072145D20FA359357\",\"password_last_changed\":1664797216}'),('%','v.je','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*6A73561D1E49479B0E89BC6072145D20FA359357\",\"password_last_changed\":1665044242}'),('%','s.je','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*2721779FE2256C5EDD7F7989590D8E598CB5B068\",\"password_last_changed\":1665044243}'),('%','student','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*1308E0FCD43112F8D948AB093F54892CB7B220AA\",\"password_last_changed\":1665044243}');
+INSERT INTO `global_priv` VALUES ('localhost','mariadb.sys','{\"access\":0,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"\",\"account_locked\":true,\"password_last_changed\":0}'),('localhost','root','{\"access\":18446744073709551615,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*6A73561D1E49479B0E89BC6072145D20FA359357\",\"password_last_changed\":1664797216}'),('%','root','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*6A73561D1E49479B0E89BC6072145D20FA359357\",\"password_last_changed\":1664797216}'),('%','v.je','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*6A73561D1E49479B0E89BC6072145D20FA359357\",\"password_last_changed\":1680635796}'),('%','s.je','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*2721779FE2256C5EDD7F7989590D8E598CB5B068\",\"password_last_changed\":1680635796}'),('%','student','{\"access\":549755813887,\"version_id\":100903,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*1308E0FCD43112F8D948AB093F54892CB7B220AA\",\"password_last_changed\":1680635796}');
 /*!40000 ALTER TABLE `global_priv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -818,7 +818,7 @@ CREATE TABLE `innodb_index_stats` (
 
 LOCK TABLES `innodb_index_stats` WRITE;
 /*!40000 ALTER TABLE `innodb_index_stats` DISABLE KEYS */;
-INSERT INTO `innodb_index_stats` VALUES ('as1','auction','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'auctionID'),('as1','auction','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','auction','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','auction','categoryID_idx','2023-03-21 14:52:49','n_diff_pfx01',0,1,'categoryID'),('as1','auction','categoryID_idx','2023-03-21 14:52:49','n_diff_pfx02',0,1,'categoryID,auctionID'),('as1','auction','categoryID_idx','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','auction','categoryID_idx','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','bid_history','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'change_id'),('as1','bid_history','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','bid_history','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','category','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'categoryID'),('as1','category','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','category','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','register','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'registerId'),('as1','register','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','register','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','review','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'reviewID'),('as1','review','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','review','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','user','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'userID'),('as1','user','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','user','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('csy2028','person','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'email'),('csy2028','person','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('csy2028','person','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('ijdb','category','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('ijdb','category','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('ijdb','category','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('ijdb','joke','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('ijdb','joke','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('ijdb','joke','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','applicants','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','applicants','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','applicants','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','category','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','category','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','category','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','enquiry','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','enquiry','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','enquiry','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','job','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','job','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','job','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','users','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','users','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','users','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','users','username_UNIQUE','2023-03-21 14:52:49','n_diff_pfx01',0,1,'username'),('job','users','username_UNIQUE','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','users','username_UNIQUE','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'domain_id'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','n_diff_pfx02',0,1,'domain_id,sub_id'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index');
+INSERT INTO `innodb_index_stats` VALUES ('as1','auction','PRIMARY','2023-03-21 15:14:56','n_diff_pfx01',28,1,'auctionID'),('as1','auction','PRIMARY','2023-03-21 15:14:56','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','auction','PRIMARY','2023-03-21 15:14:56','size',1,NULL,'Number of pages in the index'),('as1','auction','categoryID_idx','2023-03-21 15:14:56','n_diff_pfx01',9,1,'categoryId'),('as1','auction','categoryID_idx','2023-03-21 15:14:56','n_diff_pfx02',28,1,'categoryId,auctionID'),('as1','auction','categoryID_idx','2023-03-21 15:14:56','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','auction','categoryID_idx','2023-03-21 15:14:56','size',1,NULL,'Number of pages in the index'),('as1','bid_history','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'change_id'),('as1','bid_history','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','bid_history','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','category','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'categoryID'),('as1','category','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','category','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','register','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'registerId'),('as1','register','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','register','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','review','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'reviewID'),('as1','review','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','review','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('as1','user','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'userID'),('as1','user','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('as1','user','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('csy2028','person','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'email'),('csy2028','person','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('csy2028','person','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('ijdb','category','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('ijdb','category','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('ijdb','category','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('ijdb','joke','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('ijdb','joke','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('ijdb','joke','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','applicants','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','applicants','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','applicants','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','category','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','category','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','category','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','enquiry','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','enquiry','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','enquiry','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','job','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','job','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','job','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','users','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'id'),('job','users','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','users','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('job','users','username_UNIQUE','2023-03-21 14:52:49','n_diff_pfx01',0,1,'username'),('job','users','username_UNIQUE','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('job','users','username_UNIQUE','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','n_diff_pfx01',0,1,'domain_id'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','n_diff_pfx02',0,1,'domain_id,sub_id'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','gtid_slave_pos','PRIMARY','2023-03-21 14:52:49','size',1,NULL,'Number of pages in the index');
 /*!40000 ALTER TABLE `innodb_index_stats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -846,7 +846,7 @@ CREATE TABLE `innodb_table_stats` (
 
 LOCK TABLES `innodb_table_stats` WRITE;
 /*!40000 ALTER TABLE `innodb_table_stats` DISABLE KEYS */;
-INSERT INTO `innodb_table_stats` VALUES ('as1','auction','2023-03-21 14:52:49',0,1,1),('as1','bid_history','2023-03-21 14:52:49',0,1,0),('as1','category','2023-03-21 14:52:49',0,1,0),('as1','register','2023-03-21 14:52:49',0,1,0),('as1','review','2023-03-21 14:52:49',0,1,0),('as1','user','2023-03-21 14:52:49',0,1,0),('csy2028','person','2023-03-21 14:52:49',0,1,0),('ijdb','category','2023-03-21 14:52:49',0,1,0),('ijdb','joke','2023-03-21 14:52:49',0,1,0),('job','applicants','2023-03-21 14:52:49',0,1,0),('job','category','2023-03-21 14:52:49',0,1,0),('job','enquiry','2023-03-21 14:52:49',0,1,0),('job','job','2023-03-21 14:52:49',0,1,0),('job','users','2023-03-21 14:52:49',0,1,1),('mysql','gtid_slave_pos','2023-03-21 14:52:49',0,1,0);
+INSERT INTO `innodb_table_stats` VALUES ('as1','auction','2023-03-21 15:14:56',28,1,1),('as1','bid_history','2023-03-21 14:52:49',0,1,0),('as1','category','2023-03-21 14:52:49',0,1,0),('as1','register','2023-03-21 14:52:49',0,1,0),('as1','review','2023-03-21 14:52:49',0,1,0),('as1','user','2023-03-21 14:52:49',0,1,0),('csy2028','person','2023-03-21 14:52:49',0,1,0),('ijdb','category','2023-03-21 14:52:49',0,1,0),('ijdb','joke','2023-03-21 14:52:49',0,1,0),('job','applicants','2023-03-21 14:52:49',0,1,0),('job','category','2023-03-21 14:52:49',0,1,0),('job','enquiry','2023-03-21 14:52:49',0,1,0),('job','job','2023-03-21 14:52:49',0,1,0),('job','users','2023-03-21 14:52:49',0,1,1),('mysql','gtid_slave_pos','2023-03-21 14:52:49',0,1,0);
 /*!40000 ALTER TABLE `innodb_table_stats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1208,63 +1208,71 @@ INSERT INTO `time_zone_transition_type` VALUES (1,0,-968,0,'LMT');
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `user`
+-- Table structure for table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
-/*!50001 DROP VIEW IF EXISTS `user`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user` (
-  `Host` tinyint NOT NULL,
-  `User` tinyint NOT NULL,
-  `Password` tinyint NOT NULL,
-  `Select_priv` tinyint NOT NULL,
-  `Insert_priv` tinyint NOT NULL,
-  `Update_priv` tinyint NOT NULL,
-  `Delete_priv` tinyint NOT NULL,
-  `Create_priv` tinyint NOT NULL,
-  `Drop_priv` tinyint NOT NULL,
-  `Reload_priv` tinyint NOT NULL,
-  `Shutdown_priv` tinyint NOT NULL,
-  `Process_priv` tinyint NOT NULL,
-  `File_priv` tinyint NOT NULL,
-  `Grant_priv` tinyint NOT NULL,
-  `References_priv` tinyint NOT NULL,
-  `Index_priv` tinyint NOT NULL,
-  `Alter_priv` tinyint NOT NULL,
-  `Show_db_priv` tinyint NOT NULL,
-  `Super_priv` tinyint NOT NULL,
-  `Create_tmp_table_priv` tinyint NOT NULL,
-  `Lock_tables_priv` tinyint NOT NULL,
-  `Execute_priv` tinyint NOT NULL,
-  `Repl_slave_priv` tinyint NOT NULL,
-  `Repl_client_priv` tinyint NOT NULL,
-  `Create_view_priv` tinyint NOT NULL,
-  `Show_view_priv` tinyint NOT NULL,
-  `Create_routine_priv` tinyint NOT NULL,
-  `Alter_routine_priv` tinyint NOT NULL,
-  `Create_user_priv` tinyint NOT NULL,
-  `Event_priv` tinyint NOT NULL,
-  `Trigger_priv` tinyint NOT NULL,
-  `Create_tablespace_priv` tinyint NOT NULL,
-  `Delete_history_priv` tinyint NOT NULL,
-  `ssl_type` tinyint NOT NULL,
-  `ssl_cipher` tinyint NOT NULL,
-  `x509_issuer` tinyint NOT NULL,
-  `x509_subject` tinyint NOT NULL,
-  `max_questions` tinyint NOT NULL,
-  `max_updates` tinyint NOT NULL,
-  `max_connections` tinyint NOT NULL,
-  `max_user_connections` tinyint NOT NULL,
-  `plugin` tinyint NOT NULL,
-  `authentication_string` tinyint NOT NULL,
-  `password_expired` tinyint NOT NULL,
-  `is_role` tinyint NOT NULL,
-  `default_role` tinyint NOT NULL,
-  `max_statement_time` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `Host` tinyint(4) NOT NULL,
+  `User` tinyint(4) NOT NULL,
+  `Password` tinyint(4) NOT NULL,
+  `Select_priv` tinyint(4) NOT NULL,
+  `Insert_priv` tinyint(4) NOT NULL,
+  `Update_priv` tinyint(4) NOT NULL,
+  `Delete_priv` tinyint(4) NOT NULL,
+  `Create_priv` tinyint(4) NOT NULL,
+  `Drop_priv` tinyint(4) NOT NULL,
+  `Reload_priv` tinyint(4) NOT NULL,
+  `Shutdown_priv` tinyint(4) NOT NULL,
+  `Process_priv` tinyint(4) NOT NULL,
+  `File_priv` tinyint(4) NOT NULL,
+  `Grant_priv` tinyint(4) NOT NULL,
+  `References_priv` tinyint(4) NOT NULL,
+  `Index_priv` tinyint(4) NOT NULL,
+  `Alter_priv` tinyint(4) NOT NULL,
+  `Show_db_priv` tinyint(4) NOT NULL,
+  `Super_priv` tinyint(4) NOT NULL,
+  `Create_tmp_table_priv` tinyint(4) NOT NULL,
+  `Lock_tables_priv` tinyint(4) NOT NULL,
+  `Execute_priv` tinyint(4) NOT NULL,
+  `Repl_slave_priv` tinyint(4) NOT NULL,
+  `Repl_client_priv` tinyint(4) NOT NULL,
+  `Create_view_priv` tinyint(4) NOT NULL,
+  `Show_view_priv` tinyint(4) NOT NULL,
+  `Create_routine_priv` tinyint(4) NOT NULL,
+  `Alter_routine_priv` tinyint(4) NOT NULL,
+  `Create_user_priv` tinyint(4) NOT NULL,
+  `Event_priv` tinyint(4) NOT NULL,
+  `Trigger_priv` tinyint(4) NOT NULL,
+  `Create_tablespace_priv` tinyint(4) NOT NULL,
+  `Delete_history_priv` tinyint(4) NOT NULL,
+  `ssl_type` tinyint(4) NOT NULL,
+  `ssl_cipher` tinyint(4) NOT NULL,
+  `x509_issuer` tinyint(4) NOT NULL,
+  `x509_subject` tinyint(4) NOT NULL,
+  `max_questions` tinyint(4) NOT NULL,
+  `max_updates` tinyint(4) NOT NULL,
+  `max_connections` tinyint(4) NOT NULL,
+  `max_user_connections` tinyint(4) NOT NULL,
+  `plugin` tinyint(4) NOT NULL,
+  `authentication_string` tinyint(4) NOT NULL,
+  `password_expired` tinyint(4) NOT NULL,
+  `is_role` tinyint(4) NOT NULL,
+  `default_role` tinyint(4) NOT NULL,
+  `max_statement_time` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `general_log`
@@ -1333,910 +1341,1230 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `sys` /*!40100 DEFAULT CHARACTER SET ut
 USE `sys`;
 
 --
--- Temporary table structure for view `host_summary`
+-- Table structure for table `host_summary`
 --
 
 DROP TABLE IF EXISTS `host_summary`;
-/*!50001 DROP VIEW IF EXISTS `host_summary`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `host_summary` (
-  `host` tinyint NOT NULL,
-  `statements` tinyint NOT NULL,
-  `statement_latency` tinyint NOT NULL,
-  `statement_avg_latency` tinyint NOT NULL,
-  `table_scans` tinyint NOT NULL,
-  `file_ios` tinyint NOT NULL,
-  `file_io_latency` tinyint NOT NULL,
-  `current_connections` tinyint NOT NULL,
-  `total_connections` tinyint NOT NULL,
-  `unique_users` tinyint NOT NULL,
-  `current_memory` tinyint NOT NULL,
-  `total_memory_allocated` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_summary` (
+  `host` tinyint(4) NOT NULL,
+  `statements` tinyint(4) NOT NULL,
+  `statement_latency` tinyint(4) NOT NULL,
+  `statement_avg_latency` tinyint(4) NOT NULL,
+  `table_scans` tinyint(4) NOT NULL,
+  `file_ios` tinyint(4) NOT NULL,
+  `file_io_latency` tinyint(4) NOT NULL,
+  `current_connections` tinyint(4) NOT NULL,
+  `total_connections` tinyint(4) NOT NULL,
+  `unique_users` tinyint(4) NOT NULL,
+  `current_memory` tinyint(4) NOT NULL,
+  `total_memory_allocated` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `host_summary_by_file_io`
+-- Dumping data for table `host_summary`
+--
+
+LOCK TABLES `host_summary` WRITE;
+/*!40000 ALTER TABLE `host_summary` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host_summary` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `host_summary_by_file_io`
 --
 
 DROP TABLE IF EXISTS `host_summary_by_file_io`;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_file_io`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `host_summary_by_file_io` (
-  `host` tinyint NOT NULL,
-  `ios` tinyint NOT NULL,
-  `io_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_summary_by_file_io` (
+  `host` tinyint(4) NOT NULL,
+  `ios` tinyint(4) NOT NULL,
+  `io_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `host_summary_by_file_io_type`
+-- Dumping data for table `host_summary_by_file_io`
+--
+
+LOCK TABLES `host_summary_by_file_io` WRITE;
+/*!40000 ALTER TABLE `host_summary_by_file_io` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host_summary_by_file_io` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `host_summary_by_file_io_type`
 --
 
 DROP TABLE IF EXISTS `host_summary_by_file_io_type`;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_file_io_type`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `host_summary_by_file_io_type` (
-  `host` tinyint NOT NULL,
-  `event_name` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_summary_by_file_io_type` (
+  `host` tinyint(4) NOT NULL,
+  `event_name` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `host_summary_by_stages`
+-- Dumping data for table `host_summary_by_file_io_type`
+--
+
+LOCK TABLES `host_summary_by_file_io_type` WRITE;
+/*!40000 ALTER TABLE `host_summary_by_file_io_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host_summary_by_file_io_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `host_summary_by_stages`
 --
 
 DROP TABLE IF EXISTS `host_summary_by_stages`;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_stages`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `host_summary_by_stages` (
-  `host` tinyint NOT NULL,
-  `event_name` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_summary_by_stages` (
+  `host` tinyint(4) NOT NULL,
+  `event_name` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `host_summary_by_statement_latency`
+-- Dumping data for table `host_summary_by_stages`
+--
+
+LOCK TABLES `host_summary_by_stages` WRITE;
+/*!40000 ALTER TABLE `host_summary_by_stages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host_summary_by_stages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `host_summary_by_statement_latency`
 --
 
 DROP TABLE IF EXISTS `host_summary_by_statement_latency`;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_statement_latency`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `host_summary_by_statement_latency` (
-  `host` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `full_scans` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_summary_by_statement_latency` (
+  `host` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `full_scans` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `host_summary_by_statement_type`
+-- Dumping data for table `host_summary_by_statement_latency`
+--
+
+LOCK TABLES `host_summary_by_statement_latency` WRITE;
+/*!40000 ALTER TABLE `host_summary_by_statement_latency` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host_summary_by_statement_latency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `host_summary_by_statement_type`
 --
 
 DROP TABLE IF EXISTS `host_summary_by_statement_type`;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_statement_type`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `host_summary_by_statement_type` (
-  `host` tinyint NOT NULL,
-  `statement` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `full_scans` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_summary_by_statement_type` (
+  `host` tinyint(4) NOT NULL,
+  `statement` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `full_scans` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `innodb_buffer_stats_by_schema`
+-- Dumping data for table `host_summary_by_statement_type`
+--
+
+LOCK TABLES `host_summary_by_statement_type` WRITE;
+/*!40000 ALTER TABLE `host_summary_by_statement_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host_summary_by_statement_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `innodb_buffer_stats_by_schema`
 --
 
 DROP TABLE IF EXISTS `innodb_buffer_stats_by_schema`;
-/*!50001 DROP VIEW IF EXISTS `innodb_buffer_stats_by_schema`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `innodb_buffer_stats_by_schema` (
-  `object_schema` tinyint NOT NULL,
-  `allocated` tinyint NOT NULL,
-  `data` tinyint NOT NULL,
-  `pages` tinyint NOT NULL,
-  `pages_hashed` tinyint NOT NULL,
-  `pages_old` tinyint NOT NULL,
-  `rows_cached` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `innodb_buffer_stats_by_schema` (
+  `object_schema` tinyint(4) NOT NULL,
+  `allocated` tinyint(4) NOT NULL,
+  `data` tinyint(4) NOT NULL,
+  `pages` tinyint(4) NOT NULL,
+  `pages_hashed` tinyint(4) NOT NULL,
+  `pages_old` tinyint(4) NOT NULL,
+  `rows_cached` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `innodb_buffer_stats_by_table`
+-- Dumping data for table `innodb_buffer_stats_by_schema`
+--
+
+LOCK TABLES `innodb_buffer_stats_by_schema` WRITE;
+/*!40000 ALTER TABLE `innodb_buffer_stats_by_schema` DISABLE KEYS */;
+/*!40000 ALTER TABLE `innodb_buffer_stats_by_schema` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `innodb_buffer_stats_by_table`
 --
 
 DROP TABLE IF EXISTS `innodb_buffer_stats_by_table`;
-/*!50001 DROP VIEW IF EXISTS `innodb_buffer_stats_by_table`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `innodb_buffer_stats_by_table` (
-  `object_schema` tinyint NOT NULL,
-  `object_name` tinyint NOT NULL,
-  `allocated` tinyint NOT NULL,
-  `data` tinyint NOT NULL,
-  `pages` tinyint NOT NULL,
-  `pages_hashed` tinyint NOT NULL,
-  `pages_old` tinyint NOT NULL,
-  `rows_cached` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `innodb_buffer_stats_by_table` (
+  `object_schema` tinyint(4) NOT NULL,
+  `object_name` tinyint(4) NOT NULL,
+  `allocated` tinyint(4) NOT NULL,
+  `data` tinyint(4) NOT NULL,
+  `pages` tinyint(4) NOT NULL,
+  `pages_hashed` tinyint(4) NOT NULL,
+  `pages_old` tinyint(4) NOT NULL,
+  `rows_cached` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `innodb_lock_waits`
+-- Dumping data for table `innodb_buffer_stats_by_table`
+--
+
+LOCK TABLES `innodb_buffer_stats_by_table` WRITE;
+/*!40000 ALTER TABLE `innodb_buffer_stats_by_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `innodb_buffer_stats_by_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `innodb_lock_waits`
 --
 
 DROP TABLE IF EXISTS `innodb_lock_waits`;
-/*!50001 DROP VIEW IF EXISTS `innodb_lock_waits`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `innodb_lock_waits` (
-  `wait_started` tinyint NOT NULL,
-  `wait_age` tinyint NOT NULL,
-  `wait_age_secs` tinyint NOT NULL,
-  `locked_table` tinyint NOT NULL,
-  `locked_index` tinyint NOT NULL,
-  `locked_type` tinyint NOT NULL,
-  `waiting_trx_id` tinyint NOT NULL,
-  `waiting_trx_started` tinyint NOT NULL,
-  `waiting_trx_age` tinyint NOT NULL,
-  `waiting_trx_rows_locked` tinyint NOT NULL,
-  `waiting_trx_rows_modified` tinyint NOT NULL,
-  `waiting_pid` tinyint NOT NULL,
-  `waiting_query` tinyint NOT NULL,
-  `waiting_lock_id` tinyint NOT NULL,
-  `waiting_lock_mode` tinyint NOT NULL,
-  `blocking_trx_id` tinyint NOT NULL,
-  `blocking_pid` tinyint NOT NULL,
-  `blocking_query` tinyint NOT NULL,
-  `blocking_lock_id` tinyint NOT NULL,
-  `blocking_lock_mode` tinyint NOT NULL,
-  `blocking_trx_started` tinyint NOT NULL,
-  `blocking_trx_age` tinyint NOT NULL,
-  `blocking_trx_rows_locked` tinyint NOT NULL,
-  `blocking_trx_rows_modified` tinyint NOT NULL,
-  `sql_kill_blocking_query` tinyint NOT NULL,
-  `sql_kill_blocking_connection` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `innodb_lock_waits` (
+  `wait_started` tinyint(4) NOT NULL,
+  `wait_age` tinyint(4) NOT NULL,
+  `wait_age_secs` tinyint(4) NOT NULL,
+  `locked_table` tinyint(4) NOT NULL,
+  `locked_index` tinyint(4) NOT NULL,
+  `locked_type` tinyint(4) NOT NULL,
+  `waiting_trx_id` tinyint(4) NOT NULL,
+  `waiting_trx_started` tinyint(4) NOT NULL,
+  `waiting_trx_age` tinyint(4) NOT NULL,
+  `waiting_trx_rows_locked` tinyint(4) NOT NULL,
+  `waiting_trx_rows_modified` tinyint(4) NOT NULL,
+  `waiting_pid` tinyint(4) NOT NULL,
+  `waiting_query` tinyint(4) NOT NULL,
+  `waiting_lock_id` tinyint(4) NOT NULL,
+  `waiting_lock_mode` tinyint(4) NOT NULL,
+  `blocking_trx_id` tinyint(4) NOT NULL,
+  `blocking_pid` tinyint(4) NOT NULL,
+  `blocking_query` tinyint(4) NOT NULL,
+  `blocking_lock_id` tinyint(4) NOT NULL,
+  `blocking_lock_mode` tinyint(4) NOT NULL,
+  `blocking_trx_started` tinyint(4) NOT NULL,
+  `blocking_trx_age` tinyint(4) NOT NULL,
+  `blocking_trx_rows_locked` tinyint(4) NOT NULL,
+  `blocking_trx_rows_modified` tinyint(4) NOT NULL,
+  `sql_kill_blocking_query` tinyint(4) NOT NULL,
+  `sql_kill_blocking_connection` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `io_by_thread_by_latency`
+-- Dumping data for table `innodb_lock_waits`
+--
+
+LOCK TABLES `innodb_lock_waits` WRITE;
+/*!40000 ALTER TABLE `innodb_lock_waits` DISABLE KEYS */;
+/*!40000 ALTER TABLE `innodb_lock_waits` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `io_by_thread_by_latency`
 --
 
 DROP TABLE IF EXISTS `io_by_thread_by_latency`;
-/*!50001 DROP VIEW IF EXISTS `io_by_thread_by_latency`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `io_by_thread_by_latency` (
-  `user` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `min_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `thread_id` tinyint NOT NULL,
-  `processlist_id` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `io_by_thread_by_latency` (
+  `user` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `min_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `thread_id` tinyint(4) NOT NULL,
+  `processlist_id` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `io_global_by_file_by_bytes`
+-- Dumping data for table `io_by_thread_by_latency`
+--
+
+LOCK TABLES `io_by_thread_by_latency` WRITE;
+/*!40000 ALTER TABLE `io_by_thread_by_latency` DISABLE KEYS */;
+/*!40000 ALTER TABLE `io_by_thread_by_latency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `io_global_by_file_by_bytes`
 --
 
 DROP TABLE IF EXISTS `io_global_by_file_by_bytes`;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_file_by_bytes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `io_global_by_file_by_bytes` (
-  `file` tinyint NOT NULL,
-  `count_read` tinyint NOT NULL,
-  `total_read` tinyint NOT NULL,
-  `avg_read` tinyint NOT NULL,
-  `count_write` tinyint NOT NULL,
-  `total_written` tinyint NOT NULL,
-  `avg_write` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `write_pct` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `io_global_by_file_by_bytes` (
+  `file` tinyint(4) NOT NULL,
+  `count_read` tinyint(4) NOT NULL,
+  `total_read` tinyint(4) NOT NULL,
+  `avg_read` tinyint(4) NOT NULL,
+  `count_write` tinyint(4) NOT NULL,
+  `total_written` tinyint(4) NOT NULL,
+  `avg_write` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `write_pct` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `io_global_by_file_by_latency`
+-- Dumping data for table `io_global_by_file_by_bytes`
+--
+
+LOCK TABLES `io_global_by_file_by_bytes` WRITE;
+/*!40000 ALTER TABLE `io_global_by_file_by_bytes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `io_global_by_file_by_bytes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `io_global_by_file_by_latency`
 --
 
 DROP TABLE IF EXISTS `io_global_by_file_by_latency`;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_file_by_latency`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `io_global_by_file_by_latency` (
-  `file` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `count_read` tinyint NOT NULL,
-  `read_latency` tinyint NOT NULL,
-  `count_write` tinyint NOT NULL,
-  `write_latency` tinyint NOT NULL,
-  `count_misc` tinyint NOT NULL,
-  `misc_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `io_global_by_file_by_latency` (
+  `file` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `count_read` tinyint(4) NOT NULL,
+  `read_latency` tinyint(4) NOT NULL,
+  `count_write` tinyint(4) NOT NULL,
+  `write_latency` tinyint(4) NOT NULL,
+  `count_misc` tinyint(4) NOT NULL,
+  `misc_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `io_global_by_wait_by_bytes`
+-- Dumping data for table `io_global_by_file_by_latency`
+--
+
+LOCK TABLES `io_global_by_file_by_latency` WRITE;
+/*!40000 ALTER TABLE `io_global_by_file_by_latency` DISABLE KEYS */;
+/*!40000 ALTER TABLE `io_global_by_file_by_latency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `io_global_by_wait_by_bytes`
 --
 
 DROP TABLE IF EXISTS `io_global_by_wait_by_bytes`;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_wait_by_bytes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `io_global_by_wait_by_bytes` (
-  `event_name` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `min_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `count_read` tinyint NOT NULL,
-  `total_read` tinyint NOT NULL,
-  `avg_read` tinyint NOT NULL,
-  `count_write` tinyint NOT NULL,
-  `total_written` tinyint NOT NULL,
-  `avg_written` tinyint NOT NULL,
-  `total_requested` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `io_global_by_wait_by_bytes` (
+  `event_name` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `min_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `count_read` tinyint(4) NOT NULL,
+  `total_read` tinyint(4) NOT NULL,
+  `avg_read` tinyint(4) NOT NULL,
+  `count_write` tinyint(4) NOT NULL,
+  `total_written` tinyint(4) NOT NULL,
+  `avg_written` tinyint(4) NOT NULL,
+  `total_requested` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `io_global_by_wait_by_latency`
+-- Dumping data for table `io_global_by_wait_by_bytes`
+--
+
+LOCK TABLES `io_global_by_wait_by_bytes` WRITE;
+/*!40000 ALTER TABLE `io_global_by_wait_by_bytes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `io_global_by_wait_by_bytes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `io_global_by_wait_by_latency`
 --
 
 DROP TABLE IF EXISTS `io_global_by_wait_by_latency`;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_wait_by_latency`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `io_global_by_wait_by_latency` (
-  `event_name` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `read_latency` tinyint NOT NULL,
-  `write_latency` tinyint NOT NULL,
-  `misc_latency` tinyint NOT NULL,
-  `count_read` tinyint NOT NULL,
-  `total_read` tinyint NOT NULL,
-  `avg_read` tinyint NOT NULL,
-  `count_write` tinyint NOT NULL,
-  `total_written` tinyint NOT NULL,
-  `avg_written` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `io_global_by_wait_by_latency` (
+  `event_name` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `read_latency` tinyint(4) NOT NULL,
+  `write_latency` tinyint(4) NOT NULL,
+  `misc_latency` tinyint(4) NOT NULL,
+  `count_read` tinyint(4) NOT NULL,
+  `total_read` tinyint(4) NOT NULL,
+  `avg_read` tinyint(4) NOT NULL,
+  `count_write` tinyint(4) NOT NULL,
+  `total_written` tinyint(4) NOT NULL,
+  `avg_written` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `latest_file_io`
+-- Dumping data for table `io_global_by_wait_by_latency`
+--
+
+LOCK TABLES `io_global_by_wait_by_latency` WRITE;
+/*!40000 ALTER TABLE `io_global_by_wait_by_latency` DISABLE KEYS */;
+/*!40000 ALTER TABLE `io_global_by_wait_by_latency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `latest_file_io`
 --
 
 DROP TABLE IF EXISTS `latest_file_io`;
-/*!50001 DROP VIEW IF EXISTS `latest_file_io`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `latest_file_io` (
-  `thread` tinyint NOT NULL,
-  `file` tinyint NOT NULL,
-  `latency` tinyint NOT NULL,
-  `operation` tinyint NOT NULL,
-  `requested` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `latest_file_io` (
+  `thread` tinyint(4) NOT NULL,
+  `file` tinyint(4) NOT NULL,
+  `latency` tinyint(4) NOT NULL,
+  `operation` tinyint(4) NOT NULL,
+  `requested` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `memory_by_host_by_current_bytes`
+-- Dumping data for table `latest_file_io`
+--
+
+LOCK TABLES `latest_file_io` WRITE;
+/*!40000 ALTER TABLE `latest_file_io` DISABLE KEYS */;
+/*!40000 ALTER TABLE `latest_file_io` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `memory_by_host_by_current_bytes`
 --
 
 DROP TABLE IF EXISTS `memory_by_host_by_current_bytes`;
-/*!50001 DROP VIEW IF EXISTS `memory_by_host_by_current_bytes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `memory_by_host_by_current_bytes` (
-  `host` tinyint NOT NULL,
-  `current_count_used` tinyint NOT NULL,
-  `current_allocated` tinyint NOT NULL,
-  `current_avg_alloc` tinyint NOT NULL,
-  `current_max_alloc` tinyint NOT NULL,
-  `total_allocated` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `memory_by_host_by_current_bytes` (
+  `host` tinyint(4) NOT NULL,
+  `current_count_used` tinyint(4) NOT NULL,
+  `current_allocated` tinyint(4) NOT NULL,
+  `current_avg_alloc` tinyint(4) NOT NULL,
+  `current_max_alloc` tinyint(4) NOT NULL,
+  `total_allocated` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `memory_by_thread_by_current_bytes`
+-- Dumping data for table `memory_by_host_by_current_bytes`
+--
+
+LOCK TABLES `memory_by_host_by_current_bytes` WRITE;
+/*!40000 ALTER TABLE `memory_by_host_by_current_bytes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `memory_by_host_by_current_bytes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `memory_by_thread_by_current_bytes`
 --
 
 DROP TABLE IF EXISTS `memory_by_thread_by_current_bytes`;
-/*!50001 DROP VIEW IF EXISTS `memory_by_thread_by_current_bytes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `memory_by_thread_by_current_bytes` (
-  `thread_id` tinyint NOT NULL,
-  `user` tinyint NOT NULL,
-  `current_count_used` tinyint NOT NULL,
-  `current_allocated` tinyint NOT NULL,
-  `current_avg_alloc` tinyint NOT NULL,
-  `current_max_alloc` tinyint NOT NULL,
-  `total_allocated` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `memory_by_thread_by_current_bytes` (
+  `thread_id` tinyint(4) NOT NULL,
+  `user` tinyint(4) NOT NULL,
+  `current_count_used` tinyint(4) NOT NULL,
+  `current_allocated` tinyint(4) NOT NULL,
+  `current_avg_alloc` tinyint(4) NOT NULL,
+  `current_max_alloc` tinyint(4) NOT NULL,
+  `total_allocated` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `memory_by_user_by_current_bytes`
+-- Dumping data for table `memory_by_thread_by_current_bytes`
+--
+
+LOCK TABLES `memory_by_thread_by_current_bytes` WRITE;
+/*!40000 ALTER TABLE `memory_by_thread_by_current_bytes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `memory_by_thread_by_current_bytes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `memory_by_user_by_current_bytes`
 --
 
 DROP TABLE IF EXISTS `memory_by_user_by_current_bytes`;
-/*!50001 DROP VIEW IF EXISTS `memory_by_user_by_current_bytes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `memory_by_user_by_current_bytes` (
-  `user` tinyint NOT NULL,
-  `current_count_used` tinyint NOT NULL,
-  `current_allocated` tinyint NOT NULL,
-  `current_avg_alloc` tinyint NOT NULL,
-  `current_max_alloc` tinyint NOT NULL,
-  `total_allocated` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `memory_by_user_by_current_bytes` (
+  `user` tinyint(4) NOT NULL,
+  `current_count_used` tinyint(4) NOT NULL,
+  `current_allocated` tinyint(4) NOT NULL,
+  `current_avg_alloc` tinyint(4) NOT NULL,
+  `current_max_alloc` tinyint(4) NOT NULL,
+  `total_allocated` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `memory_global_by_current_bytes`
+-- Dumping data for table `memory_by_user_by_current_bytes`
+--
+
+LOCK TABLES `memory_by_user_by_current_bytes` WRITE;
+/*!40000 ALTER TABLE `memory_by_user_by_current_bytes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `memory_by_user_by_current_bytes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `memory_global_by_current_bytes`
 --
 
 DROP TABLE IF EXISTS `memory_global_by_current_bytes`;
-/*!50001 DROP VIEW IF EXISTS `memory_global_by_current_bytes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `memory_global_by_current_bytes` (
-  `event_name` tinyint NOT NULL,
-  `current_count` tinyint NOT NULL,
-  `current_alloc` tinyint NOT NULL,
-  `current_avg_alloc` tinyint NOT NULL,
-  `high_count` tinyint NOT NULL,
-  `high_alloc` tinyint NOT NULL,
-  `high_avg_alloc` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `memory_global_by_current_bytes` (
+  `event_name` tinyint(4) NOT NULL,
+  `current_count` tinyint(4) NOT NULL,
+  `current_alloc` tinyint(4) NOT NULL,
+  `current_avg_alloc` tinyint(4) NOT NULL,
+  `high_count` tinyint(4) NOT NULL,
+  `high_alloc` tinyint(4) NOT NULL,
+  `high_avg_alloc` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `memory_global_total`
+-- Dumping data for table `memory_global_by_current_bytes`
+--
+
+LOCK TABLES `memory_global_by_current_bytes` WRITE;
+/*!40000 ALTER TABLE `memory_global_by_current_bytes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `memory_global_by_current_bytes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `memory_global_total`
 --
 
 DROP TABLE IF EXISTS `memory_global_total`;
-/*!50001 DROP VIEW IF EXISTS `memory_global_total`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `memory_global_total` (
-  `total_allocated` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `memory_global_total` (
+  `total_allocated` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `metrics`
+-- Dumping data for table `memory_global_total`
+--
+
+LOCK TABLES `memory_global_total` WRITE;
+/*!40000 ALTER TABLE `memory_global_total` DISABLE KEYS */;
+/*!40000 ALTER TABLE `memory_global_total` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `metrics`
 --
 
 DROP TABLE IF EXISTS `metrics`;
-/*!50001 DROP VIEW IF EXISTS `metrics`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `metrics` (
-  `Variable_name` tinyint NOT NULL,
-  `Variable_value` tinyint NOT NULL,
-  `Type` tinyint NOT NULL,
-  `Enabled` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `metrics` (
+  `Variable_name` tinyint(4) NOT NULL,
+  `Variable_value` tinyint(4) NOT NULL,
+  `Type` tinyint(4) NOT NULL,
+  `Enabled` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `processlist`
+-- Dumping data for table `metrics`
+--
+
+LOCK TABLES `metrics` WRITE;
+/*!40000 ALTER TABLE `metrics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `metrics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `processlist`
 --
 
 DROP TABLE IF EXISTS `processlist`;
-/*!50001 DROP VIEW IF EXISTS `processlist`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `processlist` (
-  `thd_id` tinyint NOT NULL,
-  `conn_id` tinyint NOT NULL,
-  `user` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `command` tinyint NOT NULL,
-  `state` tinyint NOT NULL,
-  `time` tinyint NOT NULL,
-  `current_statement` tinyint NOT NULL,
-  `statement_latency` tinyint NOT NULL,
-  `progress` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `tmp_tables` tinyint NOT NULL,
-  `tmp_disk_tables` tinyint NOT NULL,
-  `full_scan` tinyint NOT NULL,
-  `last_statement` tinyint NOT NULL,
-  `last_statement_latency` tinyint NOT NULL,
-  `current_memory` tinyint NOT NULL,
-  `last_wait` tinyint NOT NULL,
-  `last_wait_latency` tinyint NOT NULL,
-  `source` tinyint NOT NULL,
-  `trx_latency` tinyint NOT NULL,
-  `trx_state` tinyint NOT NULL,
-  `trx_autocommit` tinyint NOT NULL,
-  `pid` tinyint NOT NULL,
-  `program_name` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `processlist` (
+  `thd_id` tinyint(4) NOT NULL,
+  `conn_id` tinyint(4) NOT NULL,
+  `user` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `command` tinyint(4) NOT NULL,
+  `state` tinyint(4) NOT NULL,
+  `time` tinyint(4) NOT NULL,
+  `current_statement` tinyint(4) NOT NULL,
+  `statement_latency` tinyint(4) NOT NULL,
+  `progress` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `tmp_tables` tinyint(4) NOT NULL,
+  `tmp_disk_tables` tinyint(4) NOT NULL,
+  `full_scan` tinyint(4) NOT NULL,
+  `last_statement` tinyint(4) NOT NULL,
+  `last_statement_latency` tinyint(4) NOT NULL,
+  `current_memory` tinyint(4) NOT NULL,
+  `last_wait` tinyint(4) NOT NULL,
+  `last_wait_latency` tinyint(4) NOT NULL,
+  `source` tinyint(4) NOT NULL,
+  `trx_latency` tinyint(4) NOT NULL,
+  `trx_state` tinyint(4) NOT NULL,
+  `trx_autocommit` tinyint(4) NOT NULL,
+  `pid` tinyint(4) NOT NULL,
+  `program_name` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `ps_check_lost_instrumentation`
+-- Dumping data for table `processlist`
+--
+
+LOCK TABLES `processlist` WRITE;
+/*!40000 ALTER TABLE `processlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `processlist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ps_check_lost_instrumentation`
 --
 
 DROP TABLE IF EXISTS `ps_check_lost_instrumentation`;
-/*!50001 DROP VIEW IF EXISTS `ps_check_lost_instrumentation`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `ps_check_lost_instrumentation` (
-  `variable_name` tinyint NOT NULL,
-  `variable_value` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ps_check_lost_instrumentation` (
+  `variable_name` tinyint(4) NOT NULL,
+  `variable_value` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_auto_increment_columns`
+-- Dumping data for table `ps_check_lost_instrumentation`
+--
+
+LOCK TABLES `ps_check_lost_instrumentation` WRITE;
+/*!40000 ALTER TABLE `ps_check_lost_instrumentation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ps_check_lost_instrumentation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_auto_increment_columns`
 --
 
 DROP TABLE IF EXISTS `schema_auto_increment_columns`;
-/*!50001 DROP VIEW IF EXISTS `schema_auto_increment_columns`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_auto_increment_columns` (
-  `table_schema` tinyint NOT NULL,
-  `table_name` tinyint NOT NULL,
-  `column_name` tinyint NOT NULL,
-  `data_type` tinyint NOT NULL,
-  `column_type` tinyint NOT NULL,
-  `is_signed` tinyint NOT NULL,
-  `is_unsigned` tinyint NOT NULL,
-  `max_value` tinyint NOT NULL,
-  `auto_increment` tinyint NOT NULL,
-  `auto_increment_ratio` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_auto_increment_columns` (
+  `table_schema` tinyint(4) NOT NULL,
+  `table_name` tinyint(4) NOT NULL,
+  `column_name` tinyint(4) NOT NULL,
+  `data_type` tinyint(4) NOT NULL,
+  `column_type` tinyint(4) NOT NULL,
+  `is_signed` tinyint(4) NOT NULL,
+  `is_unsigned` tinyint(4) NOT NULL,
+  `max_value` tinyint(4) NOT NULL,
+  `auto_increment` tinyint(4) NOT NULL,
+  `auto_increment_ratio` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_index_statistics`
+-- Dumping data for table `schema_auto_increment_columns`
+--
+
+LOCK TABLES `schema_auto_increment_columns` WRITE;
+/*!40000 ALTER TABLE `schema_auto_increment_columns` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_auto_increment_columns` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_index_statistics`
 --
 
 DROP TABLE IF EXISTS `schema_index_statistics`;
-/*!50001 DROP VIEW IF EXISTS `schema_index_statistics`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_index_statistics` (
-  `table_schema` tinyint NOT NULL,
-  `table_name` tinyint NOT NULL,
-  `index_name` tinyint NOT NULL,
-  `rows_selected` tinyint NOT NULL,
-  `select_latency` tinyint NOT NULL,
-  `rows_inserted` tinyint NOT NULL,
-  `insert_latency` tinyint NOT NULL,
-  `rows_updated` tinyint NOT NULL,
-  `update_latency` tinyint NOT NULL,
-  `rows_deleted` tinyint NOT NULL,
-  `delete_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_index_statistics` (
+  `table_schema` tinyint(4) NOT NULL,
+  `table_name` tinyint(4) NOT NULL,
+  `index_name` tinyint(4) NOT NULL,
+  `rows_selected` tinyint(4) NOT NULL,
+  `select_latency` tinyint(4) NOT NULL,
+  `rows_inserted` tinyint(4) NOT NULL,
+  `insert_latency` tinyint(4) NOT NULL,
+  `rows_updated` tinyint(4) NOT NULL,
+  `update_latency` tinyint(4) NOT NULL,
+  `rows_deleted` tinyint(4) NOT NULL,
+  `delete_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_object_overview`
+-- Dumping data for table `schema_index_statistics`
+--
+
+LOCK TABLES `schema_index_statistics` WRITE;
+/*!40000 ALTER TABLE `schema_index_statistics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_index_statistics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_object_overview`
 --
 
 DROP TABLE IF EXISTS `schema_object_overview`;
-/*!50001 DROP VIEW IF EXISTS `schema_object_overview`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_object_overview` (
-  `db` tinyint NOT NULL,
-  `object_type` tinyint NOT NULL,
-  `count` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_object_overview` (
+  `db` tinyint(4) NOT NULL,
+  `object_type` tinyint(4) NOT NULL,
+  `count` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_redundant_indexes`
+-- Dumping data for table `schema_object_overview`
+--
+
+LOCK TABLES `schema_object_overview` WRITE;
+/*!40000 ALTER TABLE `schema_object_overview` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_object_overview` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_redundant_indexes`
 --
 
 DROP TABLE IF EXISTS `schema_redundant_indexes`;
-/*!50001 DROP VIEW IF EXISTS `schema_redundant_indexes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_redundant_indexes` (
-  `table_schema` tinyint NOT NULL,
-  `table_name` tinyint NOT NULL,
-  `redundant_index_name` tinyint NOT NULL,
-  `redundant_index_columns` tinyint NOT NULL,
-  `redundant_index_non_unique` tinyint NOT NULL,
-  `dominant_index_name` tinyint NOT NULL,
-  `dominant_index_columns` tinyint NOT NULL,
-  `dominant_index_non_unique` tinyint NOT NULL,
-  `subpart_exists` tinyint NOT NULL,
-  `sql_drop_index` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_redundant_indexes` (
+  `table_schema` tinyint(4) NOT NULL,
+  `table_name` tinyint(4) NOT NULL,
+  `redundant_index_name` tinyint(4) NOT NULL,
+  `redundant_index_columns` tinyint(4) NOT NULL,
+  `redundant_index_non_unique` tinyint(4) NOT NULL,
+  `dominant_index_name` tinyint(4) NOT NULL,
+  `dominant_index_columns` tinyint(4) NOT NULL,
+  `dominant_index_non_unique` tinyint(4) NOT NULL,
+  `subpart_exists` tinyint(4) NOT NULL,
+  `sql_drop_index` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_table_lock_waits`
+-- Dumping data for table `schema_redundant_indexes`
+--
+
+LOCK TABLES `schema_redundant_indexes` WRITE;
+/*!40000 ALTER TABLE `schema_redundant_indexes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_redundant_indexes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_table_lock_waits`
 --
 
 DROP TABLE IF EXISTS `schema_table_lock_waits`;
-/*!50001 DROP VIEW IF EXISTS `schema_table_lock_waits`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_table_lock_waits` (
-  `object_schema` tinyint NOT NULL,
-  `object_name` tinyint NOT NULL,
-  `waiting_thread_id` tinyint NOT NULL,
-  `waiting_pid` tinyint NOT NULL,
-  `waiting_account` tinyint NOT NULL,
-  `waiting_lock_type` tinyint NOT NULL,
-  `waiting_lock_duration` tinyint NOT NULL,
-  `waiting_query` tinyint NOT NULL,
-  `waiting_query_secs` tinyint NOT NULL,
-  `waiting_query_rows_affected` tinyint NOT NULL,
-  `waiting_query_rows_examined` tinyint NOT NULL,
-  `blocking_thread_id` tinyint NOT NULL,
-  `blocking_pid` tinyint NOT NULL,
-  `blocking_account` tinyint NOT NULL,
-  `blocking_lock_type` tinyint NOT NULL,
-  `blocking_lock_duration` tinyint NOT NULL,
-  `sql_kill_blocking_query` tinyint NOT NULL,
-  `sql_kill_blocking_connection` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_table_lock_waits` (
+  `object_schema` tinyint(4) NOT NULL,
+  `object_name` tinyint(4) NOT NULL,
+  `waiting_thread_id` tinyint(4) NOT NULL,
+  `waiting_pid` tinyint(4) NOT NULL,
+  `waiting_account` tinyint(4) NOT NULL,
+  `waiting_lock_type` tinyint(4) NOT NULL,
+  `waiting_lock_duration` tinyint(4) NOT NULL,
+  `waiting_query` tinyint(4) NOT NULL,
+  `waiting_query_secs` tinyint(4) NOT NULL,
+  `waiting_query_rows_affected` tinyint(4) NOT NULL,
+  `waiting_query_rows_examined` tinyint(4) NOT NULL,
+  `blocking_thread_id` tinyint(4) NOT NULL,
+  `blocking_pid` tinyint(4) NOT NULL,
+  `blocking_account` tinyint(4) NOT NULL,
+  `blocking_lock_type` tinyint(4) NOT NULL,
+  `blocking_lock_duration` tinyint(4) NOT NULL,
+  `sql_kill_blocking_query` tinyint(4) NOT NULL,
+  `sql_kill_blocking_connection` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_table_statistics`
+-- Dumping data for table `schema_table_lock_waits`
+--
+
+LOCK TABLES `schema_table_lock_waits` WRITE;
+/*!40000 ALTER TABLE `schema_table_lock_waits` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_table_lock_waits` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_table_statistics`
 --
 
 DROP TABLE IF EXISTS `schema_table_statistics`;
-/*!50001 DROP VIEW IF EXISTS `schema_table_statistics`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_table_statistics` (
-  `table_schema` tinyint NOT NULL,
-  `table_name` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `rows_fetched` tinyint NOT NULL,
-  `fetch_latency` tinyint NOT NULL,
-  `rows_inserted` tinyint NOT NULL,
-  `insert_latency` tinyint NOT NULL,
-  `rows_updated` tinyint NOT NULL,
-  `update_latency` tinyint NOT NULL,
-  `rows_deleted` tinyint NOT NULL,
-  `delete_latency` tinyint NOT NULL,
-  `io_read_requests` tinyint NOT NULL,
-  `io_read` tinyint NOT NULL,
-  `io_read_latency` tinyint NOT NULL,
-  `io_write_requests` tinyint NOT NULL,
-  `io_write` tinyint NOT NULL,
-  `io_write_latency` tinyint NOT NULL,
-  `io_misc_requests` tinyint NOT NULL,
-  `io_misc_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_table_statistics` (
+  `table_schema` tinyint(4) NOT NULL,
+  `table_name` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `rows_fetched` tinyint(4) NOT NULL,
+  `fetch_latency` tinyint(4) NOT NULL,
+  `rows_inserted` tinyint(4) NOT NULL,
+  `insert_latency` tinyint(4) NOT NULL,
+  `rows_updated` tinyint(4) NOT NULL,
+  `update_latency` tinyint(4) NOT NULL,
+  `rows_deleted` tinyint(4) NOT NULL,
+  `delete_latency` tinyint(4) NOT NULL,
+  `io_read_requests` tinyint(4) NOT NULL,
+  `io_read` tinyint(4) NOT NULL,
+  `io_read_latency` tinyint(4) NOT NULL,
+  `io_write_requests` tinyint(4) NOT NULL,
+  `io_write` tinyint(4) NOT NULL,
+  `io_write_latency` tinyint(4) NOT NULL,
+  `io_misc_requests` tinyint(4) NOT NULL,
+  `io_misc_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_table_statistics_with_buffer`
+-- Dumping data for table `schema_table_statistics`
+--
+
+LOCK TABLES `schema_table_statistics` WRITE;
+/*!40000 ALTER TABLE `schema_table_statistics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_table_statistics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_table_statistics_with_buffer`
 --
 
 DROP TABLE IF EXISTS `schema_table_statistics_with_buffer`;
-/*!50001 DROP VIEW IF EXISTS `schema_table_statistics_with_buffer`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_table_statistics_with_buffer` (
-  `table_schema` tinyint NOT NULL,
-  `table_name` tinyint NOT NULL,
-  `rows_fetched` tinyint NOT NULL,
-  `fetch_latency` tinyint NOT NULL,
-  `rows_inserted` tinyint NOT NULL,
-  `insert_latency` tinyint NOT NULL,
-  `rows_updated` tinyint NOT NULL,
-  `update_latency` tinyint NOT NULL,
-  `rows_deleted` tinyint NOT NULL,
-  `delete_latency` tinyint NOT NULL,
-  `io_read_requests` tinyint NOT NULL,
-  `io_read` tinyint NOT NULL,
-  `io_read_latency` tinyint NOT NULL,
-  `io_write_requests` tinyint NOT NULL,
-  `io_write` tinyint NOT NULL,
-  `io_write_latency` tinyint NOT NULL,
-  `io_misc_requests` tinyint NOT NULL,
-  `io_misc_latency` tinyint NOT NULL,
-  `innodb_buffer_allocated` tinyint NOT NULL,
-  `innodb_buffer_data` tinyint NOT NULL,
-  `innodb_buffer_free` tinyint NOT NULL,
-  `innodb_buffer_pages` tinyint NOT NULL,
-  `innodb_buffer_pages_hashed` tinyint NOT NULL,
-  `innodb_buffer_pages_old` tinyint NOT NULL,
-  `innodb_buffer_rows_cached` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_table_statistics_with_buffer` (
+  `table_schema` tinyint(4) NOT NULL,
+  `table_name` tinyint(4) NOT NULL,
+  `rows_fetched` tinyint(4) NOT NULL,
+  `fetch_latency` tinyint(4) NOT NULL,
+  `rows_inserted` tinyint(4) NOT NULL,
+  `insert_latency` tinyint(4) NOT NULL,
+  `rows_updated` tinyint(4) NOT NULL,
+  `update_latency` tinyint(4) NOT NULL,
+  `rows_deleted` tinyint(4) NOT NULL,
+  `delete_latency` tinyint(4) NOT NULL,
+  `io_read_requests` tinyint(4) NOT NULL,
+  `io_read` tinyint(4) NOT NULL,
+  `io_read_latency` tinyint(4) NOT NULL,
+  `io_write_requests` tinyint(4) NOT NULL,
+  `io_write` tinyint(4) NOT NULL,
+  `io_write_latency` tinyint(4) NOT NULL,
+  `io_misc_requests` tinyint(4) NOT NULL,
+  `io_misc_latency` tinyint(4) NOT NULL,
+  `innodb_buffer_allocated` tinyint(4) NOT NULL,
+  `innodb_buffer_data` tinyint(4) NOT NULL,
+  `innodb_buffer_free` tinyint(4) NOT NULL,
+  `innodb_buffer_pages` tinyint(4) NOT NULL,
+  `innodb_buffer_pages_hashed` tinyint(4) NOT NULL,
+  `innodb_buffer_pages_old` tinyint(4) NOT NULL,
+  `innodb_buffer_rows_cached` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_tables_with_full_table_scans`
+-- Dumping data for table `schema_table_statistics_with_buffer`
+--
+
+LOCK TABLES `schema_table_statistics_with_buffer` WRITE;
+/*!40000 ALTER TABLE `schema_table_statistics_with_buffer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_table_statistics_with_buffer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_tables_with_full_table_scans`
 --
 
 DROP TABLE IF EXISTS `schema_tables_with_full_table_scans`;
-/*!50001 DROP VIEW IF EXISTS `schema_tables_with_full_table_scans`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_tables_with_full_table_scans` (
-  `object_schema` tinyint NOT NULL,
-  `object_name` tinyint NOT NULL,
-  `rows_full_scanned` tinyint NOT NULL,
-  `latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_tables_with_full_table_scans` (
+  `object_schema` tinyint(4) NOT NULL,
+  `object_name` tinyint(4) NOT NULL,
+  `rows_full_scanned` tinyint(4) NOT NULL,
+  `latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `schema_unused_indexes`
+-- Dumping data for table `schema_tables_with_full_table_scans`
+--
+
+LOCK TABLES `schema_tables_with_full_table_scans` WRITE;
+/*!40000 ALTER TABLE `schema_tables_with_full_table_scans` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_tables_with_full_table_scans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_unused_indexes`
 --
 
 DROP TABLE IF EXISTS `schema_unused_indexes`;
-/*!50001 DROP VIEW IF EXISTS `schema_unused_indexes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `schema_unused_indexes` (
-  `object_schema` tinyint NOT NULL,
-  `object_name` tinyint NOT NULL,
-  `index_name` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_unused_indexes` (
+  `object_schema` tinyint(4) NOT NULL,
+  `object_name` tinyint(4) NOT NULL,
+  `index_name` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `session`
+-- Dumping data for table `schema_unused_indexes`
+--
+
+LOCK TABLES `schema_unused_indexes` WRITE;
+/*!40000 ALTER TABLE `schema_unused_indexes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schema_unused_indexes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `session`
 --
 
 DROP TABLE IF EXISTS `session`;
-/*!50001 DROP VIEW IF EXISTS `session`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `session` (
-  `thd_id` tinyint NOT NULL,
-  `conn_id` tinyint NOT NULL,
-  `user` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `command` tinyint NOT NULL,
-  `state` tinyint NOT NULL,
-  `time` tinyint NOT NULL,
-  `current_statement` tinyint NOT NULL,
-  `statement_latency` tinyint NOT NULL,
-  `progress` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `tmp_tables` tinyint NOT NULL,
-  `tmp_disk_tables` tinyint NOT NULL,
-  `full_scan` tinyint NOT NULL,
-  `last_statement` tinyint NOT NULL,
-  `last_statement_latency` tinyint NOT NULL,
-  `current_memory` tinyint NOT NULL,
-  `last_wait` tinyint NOT NULL,
-  `last_wait_latency` tinyint NOT NULL,
-  `source` tinyint NOT NULL,
-  `trx_latency` tinyint NOT NULL,
-  `trx_state` tinyint NOT NULL,
-  `trx_autocommit` tinyint NOT NULL,
-  `pid` tinyint NOT NULL,
-  `program_name` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `session` (
+  `thd_id` tinyint(4) NOT NULL,
+  `conn_id` tinyint(4) NOT NULL,
+  `user` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `command` tinyint(4) NOT NULL,
+  `state` tinyint(4) NOT NULL,
+  `time` tinyint(4) NOT NULL,
+  `current_statement` tinyint(4) NOT NULL,
+  `statement_latency` tinyint(4) NOT NULL,
+  `progress` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `tmp_tables` tinyint(4) NOT NULL,
+  `tmp_disk_tables` tinyint(4) NOT NULL,
+  `full_scan` tinyint(4) NOT NULL,
+  `last_statement` tinyint(4) NOT NULL,
+  `last_statement_latency` tinyint(4) NOT NULL,
+  `current_memory` tinyint(4) NOT NULL,
+  `last_wait` tinyint(4) NOT NULL,
+  `last_wait_latency` tinyint(4) NOT NULL,
+  `source` tinyint(4) NOT NULL,
+  `trx_latency` tinyint(4) NOT NULL,
+  `trx_state` tinyint(4) NOT NULL,
+  `trx_autocommit` tinyint(4) NOT NULL,
+  `pid` tinyint(4) NOT NULL,
+  `program_name` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `session_ssl_status`
+-- Dumping data for table `session`
+--
+
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `session_ssl_status`
 --
 
 DROP TABLE IF EXISTS `session_ssl_status`;
-/*!50001 DROP VIEW IF EXISTS `session_ssl_status`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `session_ssl_status` (
-  `thread_id` tinyint NOT NULL,
-  `ssl_version` tinyint NOT NULL,
-  `ssl_cipher` tinyint NOT NULL,
-  `ssl_sessions_reused` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `session_ssl_status` (
+  `thread_id` tinyint(4) NOT NULL,
+  `ssl_version` tinyint(4) NOT NULL,
+  `ssl_cipher` tinyint(4) NOT NULL,
+  `ssl_sessions_reused` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `statement_analysis`
+-- Dumping data for table `session_ssl_status`
+--
+
+LOCK TABLES `session_ssl_status` WRITE;
+/*!40000 ALTER TABLE `session_ssl_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session_ssl_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statement_analysis`
 --
 
 DROP TABLE IF EXISTS `statement_analysis`;
-/*!50001 DROP VIEW IF EXISTS `statement_analysis`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `statement_analysis` (
-  `query` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `full_scan` tinyint NOT NULL,
-  `exec_count` tinyint NOT NULL,
-  `err_count` tinyint NOT NULL,
-  `warn_count` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_sent_avg` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_examined_avg` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `rows_affected_avg` tinyint NOT NULL,
-  `tmp_tables` tinyint NOT NULL,
-  `tmp_disk_tables` tinyint NOT NULL,
-  `rows_sorted` tinyint NOT NULL,
-  `sort_merge_passes` tinyint NOT NULL,
-  `digest` tinyint NOT NULL,
-  `first_seen` tinyint NOT NULL,
-  `last_seen` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statement_analysis` (
+  `query` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `full_scan` tinyint(4) NOT NULL,
+  `exec_count` tinyint(4) NOT NULL,
+  `err_count` tinyint(4) NOT NULL,
+  `warn_count` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_sent_avg` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_examined_avg` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `rows_affected_avg` tinyint(4) NOT NULL,
+  `tmp_tables` tinyint(4) NOT NULL,
+  `tmp_disk_tables` tinyint(4) NOT NULL,
+  `rows_sorted` tinyint(4) NOT NULL,
+  `sort_merge_passes` tinyint(4) NOT NULL,
+  `digest` tinyint(4) NOT NULL,
+  `first_seen` tinyint(4) NOT NULL,
+  `last_seen` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `statements_with_errors_or_warnings`
+-- Dumping data for table `statement_analysis`
+--
+
+LOCK TABLES `statement_analysis` WRITE;
+/*!40000 ALTER TABLE `statement_analysis` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statement_analysis` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statements_with_errors_or_warnings`
 --
 
 DROP TABLE IF EXISTS `statements_with_errors_or_warnings`;
-/*!50001 DROP VIEW IF EXISTS `statements_with_errors_or_warnings`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `statements_with_errors_or_warnings` (
-  `query` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `exec_count` tinyint NOT NULL,
-  `errors` tinyint NOT NULL,
-  `error_pct` tinyint NOT NULL,
-  `warnings` tinyint NOT NULL,
-  `warning_pct` tinyint NOT NULL,
-  `first_seen` tinyint NOT NULL,
-  `last_seen` tinyint NOT NULL,
-  `digest` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statements_with_errors_or_warnings` (
+  `query` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `exec_count` tinyint(4) NOT NULL,
+  `errors` tinyint(4) NOT NULL,
+  `error_pct` tinyint(4) NOT NULL,
+  `warnings` tinyint(4) NOT NULL,
+  `warning_pct` tinyint(4) NOT NULL,
+  `first_seen` tinyint(4) NOT NULL,
+  `last_seen` tinyint(4) NOT NULL,
+  `digest` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `statements_with_full_table_scans`
+-- Dumping data for table `statements_with_errors_or_warnings`
+--
+
+LOCK TABLES `statements_with_errors_or_warnings` WRITE;
+/*!40000 ALTER TABLE `statements_with_errors_or_warnings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statements_with_errors_or_warnings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statements_with_full_table_scans`
 --
 
 DROP TABLE IF EXISTS `statements_with_full_table_scans`;
-/*!50001 DROP VIEW IF EXISTS `statements_with_full_table_scans`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `statements_with_full_table_scans` (
-  `query` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `exec_count` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `no_index_used_count` tinyint NOT NULL,
-  `no_good_index_used_count` tinyint NOT NULL,
-  `no_index_used_pct` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_sent_avg` tinyint NOT NULL,
-  `rows_examined_avg` tinyint NOT NULL,
-  `first_seen` tinyint NOT NULL,
-  `last_seen` tinyint NOT NULL,
-  `digest` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statements_with_full_table_scans` (
+  `query` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `exec_count` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `no_index_used_count` tinyint(4) NOT NULL,
+  `no_good_index_used_count` tinyint(4) NOT NULL,
+  `no_index_used_pct` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_sent_avg` tinyint(4) NOT NULL,
+  `rows_examined_avg` tinyint(4) NOT NULL,
+  `first_seen` tinyint(4) NOT NULL,
+  `last_seen` tinyint(4) NOT NULL,
+  `digest` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `statements_with_runtimes_in_95th_percentile`
+-- Dumping data for table `statements_with_full_table_scans`
+--
+
+LOCK TABLES `statements_with_full_table_scans` WRITE;
+/*!40000 ALTER TABLE `statements_with_full_table_scans` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statements_with_full_table_scans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statements_with_runtimes_in_95th_percentile`
 --
 
 DROP TABLE IF EXISTS `statements_with_runtimes_in_95th_percentile`;
-/*!50001 DROP VIEW IF EXISTS `statements_with_runtimes_in_95th_percentile`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `statements_with_runtimes_in_95th_percentile` (
-  `query` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `full_scan` tinyint NOT NULL,
-  `exec_count` tinyint NOT NULL,
-  `err_count` tinyint NOT NULL,
-  `warn_count` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_sent_avg` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_examined_avg` tinyint NOT NULL,
-  `first_seen` tinyint NOT NULL,
-  `last_seen` tinyint NOT NULL,
-  `digest` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statements_with_runtimes_in_95th_percentile` (
+  `query` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `full_scan` tinyint(4) NOT NULL,
+  `exec_count` tinyint(4) NOT NULL,
+  `err_count` tinyint(4) NOT NULL,
+  `warn_count` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_sent_avg` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_examined_avg` tinyint(4) NOT NULL,
+  `first_seen` tinyint(4) NOT NULL,
+  `last_seen` tinyint(4) NOT NULL,
+  `digest` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `statements_with_sorting`
+-- Dumping data for table `statements_with_runtimes_in_95th_percentile`
+--
+
+LOCK TABLES `statements_with_runtimes_in_95th_percentile` WRITE;
+/*!40000 ALTER TABLE `statements_with_runtimes_in_95th_percentile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statements_with_runtimes_in_95th_percentile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statements_with_sorting`
 --
 
 DROP TABLE IF EXISTS `statements_with_sorting`;
-/*!50001 DROP VIEW IF EXISTS `statements_with_sorting`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `statements_with_sorting` (
-  `query` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `exec_count` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `sort_merge_passes` tinyint NOT NULL,
-  `avg_sort_merges` tinyint NOT NULL,
-  `sorts_using_scans` tinyint NOT NULL,
-  `sort_using_range` tinyint NOT NULL,
-  `rows_sorted` tinyint NOT NULL,
-  `avg_rows_sorted` tinyint NOT NULL,
-  `first_seen` tinyint NOT NULL,
-  `last_seen` tinyint NOT NULL,
-  `digest` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statements_with_sorting` (
+  `query` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `exec_count` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `sort_merge_passes` tinyint(4) NOT NULL,
+  `avg_sort_merges` tinyint(4) NOT NULL,
+  `sorts_using_scans` tinyint(4) NOT NULL,
+  `sort_using_range` tinyint(4) NOT NULL,
+  `rows_sorted` tinyint(4) NOT NULL,
+  `avg_rows_sorted` tinyint(4) NOT NULL,
+  `first_seen` tinyint(4) NOT NULL,
+  `last_seen` tinyint(4) NOT NULL,
+  `digest` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `statements_with_temp_tables`
+-- Dumping data for table `statements_with_sorting`
+--
+
+LOCK TABLES `statements_with_sorting` WRITE;
+/*!40000 ALTER TABLE `statements_with_sorting` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statements_with_sorting` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statements_with_temp_tables`
 --
 
 DROP TABLE IF EXISTS `statements_with_temp_tables`;
-/*!50001 DROP VIEW IF EXISTS `statements_with_temp_tables`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `statements_with_temp_tables` (
-  `query` tinyint NOT NULL,
-  `db` tinyint NOT NULL,
-  `exec_count` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `memory_tmp_tables` tinyint NOT NULL,
-  `disk_tmp_tables` tinyint NOT NULL,
-  `avg_tmp_tables_per_query` tinyint NOT NULL,
-  `tmp_tables_to_disk_pct` tinyint NOT NULL,
-  `first_seen` tinyint NOT NULL,
-  `last_seen` tinyint NOT NULL,
-  `digest` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statements_with_temp_tables` (
+  `query` tinyint(4) NOT NULL,
+  `db` tinyint(4) NOT NULL,
+  `exec_count` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `memory_tmp_tables` tinyint(4) NOT NULL,
+  `disk_tmp_tables` tinyint(4) NOT NULL,
+  `avg_tmp_tables_per_query` tinyint(4) NOT NULL,
+  `tmp_tables_to_disk_pct` tinyint(4) NOT NULL,
+  `first_seen` tinyint(4) NOT NULL,
+  `last_seen` tinyint(4) NOT NULL,
+  `digest` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `statements_with_temp_tables`
+--
+
+LOCK TABLES `statements_with_temp_tables` WRITE;
+/*!40000 ALTER TABLE `statements_with_temp_tables` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statements_with_temp_tables` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `sys_config`
@@ -2265,134 +2593,190 @@ INSERT INTO `sys_config` VALUES ('statement_truncate_len','64','2022-10-03 11:40
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `user_summary`
+-- Table structure for table `user_summary`
 --
 
 DROP TABLE IF EXISTS `user_summary`;
-/*!50001 DROP VIEW IF EXISTS `user_summary`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user_summary` (
-  `user` tinyint NOT NULL,
-  `statements` tinyint NOT NULL,
-  `statement_latency` tinyint NOT NULL,
-  `statement_avg_latency` tinyint NOT NULL,
-  `table_scans` tinyint NOT NULL,
-  `file_ios` tinyint NOT NULL,
-  `file_io_latency` tinyint NOT NULL,
-  `current_connections` tinyint NOT NULL,
-  `total_connections` tinyint NOT NULL,
-  `unique_hosts` tinyint NOT NULL,
-  `current_memory` tinyint NOT NULL,
-  `total_memory_allocated` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_summary` (
+  `user` tinyint(4) NOT NULL,
+  `statements` tinyint(4) NOT NULL,
+  `statement_latency` tinyint(4) NOT NULL,
+  `statement_avg_latency` tinyint(4) NOT NULL,
+  `table_scans` tinyint(4) NOT NULL,
+  `file_ios` tinyint(4) NOT NULL,
+  `file_io_latency` tinyint(4) NOT NULL,
+  `current_connections` tinyint(4) NOT NULL,
+  `total_connections` tinyint(4) NOT NULL,
+  `unique_hosts` tinyint(4) NOT NULL,
+  `current_memory` tinyint(4) NOT NULL,
+  `total_memory_allocated` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `user_summary_by_file_io`
+-- Dumping data for table `user_summary`
+--
+
+LOCK TABLES `user_summary` WRITE;
+/*!40000 ALTER TABLE `user_summary` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_summary` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_summary_by_file_io`
 --
 
 DROP TABLE IF EXISTS `user_summary_by_file_io`;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_file_io`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user_summary_by_file_io` (
-  `user` tinyint NOT NULL,
-  `ios` tinyint NOT NULL,
-  `io_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_summary_by_file_io` (
+  `user` tinyint(4) NOT NULL,
+  `ios` tinyint(4) NOT NULL,
+  `io_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `user_summary_by_file_io_type`
+-- Dumping data for table `user_summary_by_file_io`
+--
+
+LOCK TABLES `user_summary_by_file_io` WRITE;
+/*!40000 ALTER TABLE `user_summary_by_file_io` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_summary_by_file_io` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_summary_by_file_io_type`
 --
 
 DROP TABLE IF EXISTS `user_summary_by_file_io_type`;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_file_io_type`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user_summary_by_file_io_type` (
-  `user` tinyint NOT NULL,
-  `event_name` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_summary_by_file_io_type` (
+  `user` tinyint(4) NOT NULL,
+  `event_name` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `user_summary_by_stages`
+-- Dumping data for table `user_summary_by_file_io_type`
+--
+
+LOCK TABLES `user_summary_by_file_io_type` WRITE;
+/*!40000 ALTER TABLE `user_summary_by_file_io_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_summary_by_file_io_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_summary_by_stages`
 --
 
 DROP TABLE IF EXISTS `user_summary_by_stages`;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_stages`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user_summary_by_stages` (
-  `user` tinyint NOT NULL,
-  `event_name` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `avg_latency` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_summary_by_stages` (
+  `user` tinyint(4) NOT NULL,
+  `event_name` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `avg_latency` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `user_summary_by_statement_latency`
+-- Dumping data for table `user_summary_by_stages`
+--
+
+LOCK TABLES `user_summary_by_stages` WRITE;
+/*!40000 ALTER TABLE `user_summary_by_stages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_summary_by_stages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_summary_by_statement_latency`
 --
 
 DROP TABLE IF EXISTS `user_summary_by_statement_latency`;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_statement_latency`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user_summary_by_statement_latency` (
-  `user` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `full_scans` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_summary_by_statement_latency` (
+  `user` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `full_scans` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `user_summary_by_statement_type`
+-- Dumping data for table `user_summary_by_statement_latency`
+--
+
+LOCK TABLES `user_summary_by_statement_latency` WRITE;
+/*!40000 ALTER TABLE `user_summary_by_statement_latency` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_summary_by_statement_latency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_summary_by_statement_type`
 --
 
 DROP TABLE IF EXISTS `user_summary_by_statement_type`;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_statement_type`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `user_summary_by_statement_type` (
-  `user` tinyint NOT NULL,
-  `statement` tinyint NOT NULL,
-  `total` tinyint NOT NULL,
-  `total_latency` tinyint NOT NULL,
-  `max_latency` tinyint NOT NULL,
-  `lock_latency` tinyint NOT NULL,
-  `rows_sent` tinyint NOT NULL,
-  `rows_examined` tinyint NOT NULL,
-  `rows_affected` tinyint NOT NULL,
-  `full_scans` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_summary_by_statement_type` (
+  `user` tinyint(4) NOT NULL,
+  `statement` tinyint(4) NOT NULL,
+  `total` tinyint(4) NOT NULL,
+  `total_latency` tinyint(4) NOT NULL,
+  `max_latency` tinyint(4) NOT NULL,
+  `lock_latency` tinyint(4) NOT NULL,
+  `rows_sent` tinyint(4) NOT NULL,
+  `rows_examined` tinyint(4) NOT NULL,
+  `rows_affected` tinyint(4) NOT NULL,
+  `full_scans` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary table structure for view `version`
+-- Dumping data for table `user_summary_by_statement_type`
+--
+
+LOCK TABLES `user_summary_by_statement_type` WRITE;
+/*!40000 ALTER TABLE `user_summary_by_statement_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_summary_by_statement_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `version`
 --
 
 DROP TABLE IF EXISTS `version`;
-/*!50001 DROP VIEW IF EXISTS `version`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `version` (
-  `sys_version` tinyint NOT NULL,
-  `mysql_version` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `version` (
+  `sys_version` tinyint(4) NOT NULL,
+  `mysql_version` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `version`
+--
+
+LOCK TABLES `version` WRITE;
+/*!40000 ALTER TABLE `version` DISABLE KEYS */;
+/*!40000 ALTER TABLE `version` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Temporary table structure for view `wait_classes_global_by_avg_latency`
@@ -3579,922 +3963,10 @@ USE `job`;
 USE `mysql`;
 
 --
--- Final view structure for view `user`
---
-
-/*!50001 DROP TABLE IF EXISTS `user`*/;
-/*!50001 DROP VIEW IF EXISTS `user`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `user` AS select `global_priv`.`Host` AS `Host`,`global_priv`.`User` AS `User`,if(json_value(`global_priv`.`Priv`,'$.plugin') in ('mysql_native_password','mysql_old_password'),ifnull(json_value(`global_priv`.`Priv`,'$.authentication_string'),''),'') AS `Password`,if(json_value(`global_priv`.`Priv`,'$.access') & 1,'Y','N') AS `Select_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 2,'Y','N') AS `Insert_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 4,'Y','N') AS `Update_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 8,'Y','N') AS `Delete_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 16,'Y','N') AS `Create_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 32,'Y','N') AS `Drop_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 64,'Y','N') AS `Reload_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 128,'Y','N') AS `Shutdown_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 256,'Y','N') AS `Process_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 512,'Y','N') AS `File_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 1024,'Y','N') AS `Grant_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 2048,'Y','N') AS `References_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 4096,'Y','N') AS `Index_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 8192,'Y','N') AS `Alter_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 16384,'Y','N') AS `Show_db_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 32768,'Y','N') AS `Super_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 65536,'Y','N') AS `Create_tmp_table_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 131072,'Y','N') AS `Lock_tables_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 262144,'Y','N') AS `Execute_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 524288,'Y','N') AS `Repl_slave_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 1048576,'Y','N') AS `Repl_client_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 2097152,'Y','N') AS `Create_view_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 4194304,'Y','N') AS `Show_view_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 8388608,'Y','N') AS `Create_routine_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 16777216,'Y','N') AS `Alter_routine_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 33554432,'Y','N') AS `Create_user_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 67108864,'Y','N') AS `Event_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 134217728,'Y','N') AS `Trigger_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 268435456,'Y','N') AS `Create_tablespace_priv`,if(json_value(`global_priv`.`Priv`,'$.access') & 536870912,'Y','N') AS `Delete_history_priv`,elt(ifnull(json_value(`global_priv`.`Priv`,'$.ssl_type'),0) + 1,'','ANY','X509','SPECIFIED') AS `ssl_type`,ifnull(json_value(`global_priv`.`Priv`,'$.ssl_cipher'),'') AS `ssl_cipher`,ifnull(json_value(`global_priv`.`Priv`,'$.x509_issuer'),'') AS `x509_issuer`,ifnull(json_value(`global_priv`.`Priv`,'$.x509_subject'),'') AS `x509_subject`,cast(ifnull(json_value(`global_priv`.`Priv`,'$.max_questions'),0) as unsigned) AS `max_questions`,cast(ifnull(json_value(`global_priv`.`Priv`,'$.max_updates'),0) as unsigned) AS `max_updates`,cast(ifnull(json_value(`global_priv`.`Priv`,'$.max_connections'),0) as unsigned) AS `max_connections`,cast(ifnull(json_value(`global_priv`.`Priv`,'$.max_user_connections'),0) as signed) AS `max_user_connections`,ifnull(json_value(`global_priv`.`Priv`,'$.plugin'),'') AS `plugin`,ifnull(json_value(`global_priv`.`Priv`,'$.authentication_string'),'') AS `authentication_string`,if(ifnull(json_value(`global_priv`.`Priv`,'$.password_last_changed'),1) = 0,'Y','N') AS `password_expired`,elt(ifnull(json_value(`global_priv`.`Priv`,'$.is_role'),0) + 1,'N','Y') AS `is_role`,ifnull(json_value(`global_priv`.`Priv`,'$.default_role'),'') AS `default_role`,cast(ifnull(json_value(`global_priv`.`Priv`,'$.max_statement_time'),0.0) as decimal(12,6)) AS `max_statement_time` from `global_priv` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
 -- Current Database: `sys`
 --
 
 USE `sys`;
-
---
--- Final view structure for view `host_summary`
---
-
-/*!50001 DROP TABLE IF EXISTS `host_summary`*/;
-/*!50001 DROP VIEW IF EXISTS `host_summary`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `host_summary` AS select if(`performance_schema`.`accounts`.`HOST` is null,'background',`performance_schema`.`accounts`.`HOST`) AS `host`,sum(`stmt`.`total`) AS `statements`,`sys`.`format_time`(sum(`stmt`.`total_latency`)) AS `statement_latency`,`sys`.`format_time`(ifnull(sum(`stmt`.`total_latency`) / nullif(sum(`stmt`.`total`),0),0)) AS `statement_avg_latency`,sum(`stmt`.`full_scans`) AS `table_scans`,sum(`io`.`ios`) AS `file_ios`,`sys`.`format_time`(sum(`io`.`io_latency`)) AS `file_io_latency`,sum(`performance_schema`.`accounts`.`CURRENT_CONNECTIONS`) AS `current_connections`,sum(`performance_schema`.`accounts`.`TOTAL_CONNECTIONS`) AS `total_connections`,count(distinct `performance_schema`.`accounts`.`USER`) AS `unique_users`,`sys`.`format_bytes`(sum(`mem`.`current_allocated`)) AS `current_memory`,`sys`.`format_bytes`(sum(`mem`.`total_allocated`)) AS `total_memory_allocated` from (((`performance_schema`.`accounts` join `sys`.`x$host_summary_by_statement_latency` `stmt` on(`performance_schema`.`accounts`.`HOST` = `stmt`.`host`)) join `sys`.`x$host_summary_by_file_io` `io` on(`performance_schema`.`accounts`.`HOST` = `io`.`host`)) join `sys`.`x$memory_by_host_by_current_bytes` `mem` on(`performance_schema`.`accounts`.`HOST` = `mem`.`host`)) group by if(`performance_schema`.`accounts`.`HOST` is null,'background',`performance_schema`.`accounts`.`HOST`) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `host_summary_by_file_io`
---
-
-/*!50001 DROP TABLE IF EXISTS `host_summary_by_file_io`*/;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_file_io`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `host_summary_by_file_io` AS select if(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST`) AS `host`,sum(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`COUNT_STAR`) AS `ios`,`sys`.`format_time`(sum(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`)) AS `io_latency` from `performance_schema`.`events_waits_summary_by_host_by_event_name` where `performance_schema`.`events_waits_summary_by_host_by_event_name`.`EVENT_NAME` like 'wait/io/file/%' group by if(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST`) order by sum(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `host_summary_by_file_io_type`
---
-
-/*!50001 DROP TABLE IF EXISTS `host_summary_by_file_io_type`*/;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_file_io_type`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `host_summary_by_file_io_type` AS select if(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST`) AS `host`,`performance_schema`.`events_waits_summary_by_host_by_event_name`.`EVENT_NAME` AS `event_name`,`performance_schema`.`events_waits_summary_by_host_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`MAX_TIMER_WAIT`) AS `max_latency` from `performance_schema`.`events_waits_summary_by_host_by_event_name` where `performance_schema`.`events_waits_summary_by_host_by_event_name`.`EVENT_NAME` like 'wait/io/file%' and `performance_schema`.`events_waits_summary_by_host_by_event_name`.`COUNT_STAR` > 0 order by if(`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_waits_summary_by_host_by_event_name`.`HOST`),`performance_schema`.`events_waits_summary_by_host_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `host_summary_by_stages`
---
-
-/*!50001 DROP TABLE IF EXISTS `host_summary_by_stages`*/;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_stages`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `host_summary_by_stages` AS select if(`performance_schema`.`events_stages_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_stages_summary_by_host_by_event_name`.`HOST`) AS `host`,`performance_schema`.`events_stages_summary_by_host_by_event_name`.`EVENT_NAME` AS `event_name`,`performance_schema`.`events_stages_summary_by_host_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`events_stages_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`events_stages_summary_by_host_by_event_name`.`AVG_TIMER_WAIT`) AS `avg_latency` from `performance_schema`.`events_stages_summary_by_host_by_event_name` where `performance_schema`.`events_stages_summary_by_host_by_event_name`.`SUM_TIMER_WAIT` <> 0 order by if(`performance_schema`.`events_stages_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_stages_summary_by_host_by_event_name`.`HOST`),`performance_schema`.`events_stages_summary_by_host_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `host_summary_by_statement_latency`
---
-
-/*!50001 DROP TABLE IF EXISTS `host_summary_by_statement_latency`*/;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_statement_latency`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `host_summary_by_statement_latency` AS select if(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST`) AS `host`,sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`COUNT_STAR`) AS `total`,`sys`.`format_time`(sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`)) AS `total_latency`,`sys`.`format_time`(max(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`MAX_TIMER_WAIT`)) AS `max_latency`,`sys`.`format_time`(sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_LOCK_TIME`)) AS `lock_latency`,sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_ROWS_SENT`) AS `rows_sent`,sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_ROWS_EXAMINED`) AS `rows_examined`,sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_ROWS_AFFECTED`) AS `rows_affected`,sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_NO_INDEX_USED`) + sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_NO_GOOD_INDEX_USED`) AS `full_scans` from `performance_schema`.`events_statements_summary_by_host_by_event_name` group by if(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST`) order by sum(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `host_summary_by_statement_type`
---
-
-/*!50001 DROP TABLE IF EXISTS `host_summary_by_statement_type`*/;
-/*!50001 DROP VIEW IF EXISTS `host_summary_by_statement_type`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `host_summary_by_statement_type` AS select if(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST`) AS `host`,substring_index(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`EVENT_NAME`,'/',-1) AS `statement`,`performance_schema`.`events_statements_summary_by_host_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`MAX_TIMER_WAIT`) AS `max_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_LOCK_TIME`) AS `lock_latency`,`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_ROWS_SENT` AS `rows_sent`,`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_ROWS_EXAMINED` AS `rows_examined`,`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_ROWS_AFFECTED` AS `rows_affected`,`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_NO_INDEX_USED` + `performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_NO_GOOD_INDEX_USED` AS `full_scans` from `performance_schema`.`events_statements_summary_by_host_by_event_name` where `performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_TIMER_WAIT` <> 0 order by if(`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`events_statements_summary_by_host_by_event_name`.`HOST`),`performance_schema`.`events_statements_summary_by_host_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `innodb_buffer_stats_by_schema`
---
-
-/*!50001 DROP TABLE IF EXISTS `innodb_buffer_stats_by_schema`*/;
-/*!50001 DROP VIEW IF EXISTS `innodb_buffer_stats_by_schema`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `innodb_buffer_stats_by_schema` AS select if(locate('.',`ibp`.`TABLE_NAME`) = 0,'InnoDB System',replace(substring_index(`ibp`.`TABLE_NAME`,'.',1),'`','')) AS `object_schema`,`sys`.`format_bytes`(sum(if(`ibp`.`COMPRESSED_SIZE` = 0,16384,`ibp`.`COMPRESSED_SIZE`))) AS `allocated`,`sys`.`format_bytes`(sum(`ibp`.`DATA_SIZE`)) AS `data`,count(`ibp`.`PAGE_NUMBER`) AS `pages`,count(if(`ibp`.`IS_HASHED` = 'YES',1,NULL)) AS `pages_hashed`,count(if(`ibp`.`IS_OLD` = 'YES',1,NULL)) AS `pages_old`,round(sum(`ibp`.`NUMBER_RECORDS`) / count(distinct `ibp`.`INDEX_NAME`),0) AS `rows_cached` from `information_schema`.`innodb_buffer_page` `ibp` where `ibp`.`TABLE_NAME` is not null group by if(locate('.',`ibp`.`TABLE_NAME`) = 0,'InnoDB System',replace(substring_index(`ibp`.`TABLE_NAME`,'.',1),'`','')) order by sum(if(`ibp`.`COMPRESSED_SIZE` = 0,16384,`ibp`.`COMPRESSED_SIZE`)) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `innodb_buffer_stats_by_table`
---
-
-/*!50001 DROP TABLE IF EXISTS `innodb_buffer_stats_by_table`*/;
-/*!50001 DROP VIEW IF EXISTS `innodb_buffer_stats_by_table`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `innodb_buffer_stats_by_table` AS select if(locate('.',`ibp`.`TABLE_NAME`) = 0,'InnoDB System',replace(substring_index(`ibp`.`TABLE_NAME`,'.',1),'`','')) AS `object_schema`,replace(substring_index(`ibp`.`TABLE_NAME`,'.',-1),'`','') AS `object_name`,`sys`.`format_bytes`(sum(if(`ibp`.`COMPRESSED_SIZE` = 0,16384,`ibp`.`COMPRESSED_SIZE`))) AS `allocated`,`sys`.`format_bytes`(sum(`ibp`.`DATA_SIZE`)) AS `data`,count(`ibp`.`PAGE_NUMBER`) AS `pages`,count(if(`ibp`.`IS_HASHED` = 'YES',1,NULL)) AS `pages_hashed`,count(if(`ibp`.`IS_OLD` = 'YES',1,NULL)) AS `pages_old`,round(sum(`ibp`.`NUMBER_RECORDS`) / count(distinct `ibp`.`INDEX_NAME`),0) AS `rows_cached` from `information_schema`.`innodb_buffer_page` `ibp` where `ibp`.`TABLE_NAME` is not null group by if(locate('.',`ibp`.`TABLE_NAME`) = 0,'InnoDB System',replace(substring_index(`ibp`.`TABLE_NAME`,'.',1),'`','')),replace(substring_index(`ibp`.`TABLE_NAME`,'.',-1),'`','') order by sum(if(`ibp`.`COMPRESSED_SIZE` = 0,16384,`ibp`.`COMPRESSED_SIZE`)) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `innodb_lock_waits`
---
-
-/*!50001 DROP TABLE IF EXISTS `innodb_lock_waits`*/;
-/*!50001 DROP VIEW IF EXISTS `innodb_lock_waits`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `innodb_lock_waits` AS select `r`.`trx_wait_started` AS `wait_started`,timediff(current_timestamp(),`r`.`trx_wait_started`) AS `wait_age`,timestampdiff(SECOND,`r`.`trx_wait_started`,current_timestamp()) AS `wait_age_secs`,`rl`.`lock_table` AS `locked_table`,`rl`.`lock_index` AS `locked_index`,`rl`.`lock_type` AS `locked_type`,`r`.`trx_id` AS `waiting_trx_id`,`r`.`trx_started` AS `waiting_trx_started`,timediff(current_timestamp(),`r`.`trx_started`) AS `waiting_trx_age`,`r`.`trx_rows_locked` AS `waiting_trx_rows_locked`,`r`.`trx_rows_modified` AS `waiting_trx_rows_modified`,`r`.`trx_mysql_thread_id` AS `waiting_pid`,`sys`.`format_statement`(`r`.`trx_query`) AS `waiting_query`,`rl`.`lock_id` AS `waiting_lock_id`,`rl`.`lock_mode` AS `waiting_lock_mode`,`b`.`trx_id` AS `blocking_trx_id`,`b`.`trx_mysql_thread_id` AS `blocking_pid`,`sys`.`format_statement`(`b`.`trx_query`) AS `blocking_query`,`bl`.`lock_id` AS `blocking_lock_id`,`bl`.`lock_mode` AS `blocking_lock_mode`,`b`.`trx_started` AS `blocking_trx_started`,timediff(current_timestamp(),`b`.`trx_started`) AS `blocking_trx_age`,`b`.`trx_rows_locked` AS `blocking_trx_rows_locked`,`b`.`trx_rows_modified` AS `blocking_trx_rows_modified`,concat('KILL QUERY ',`b`.`trx_mysql_thread_id`) AS `sql_kill_blocking_query`,concat('KILL ',`b`.`trx_mysql_thread_id`) AS `sql_kill_blocking_connection` from ((((`information_schema`.`innodb_lock_waits` `w` join `information_schema`.`innodb_trx` `b` on(`b`.`trx_id` = `w`.`blocking_trx_id`)) join `information_schema`.`innodb_trx` `r` on(`r`.`trx_id` = `w`.`requesting_trx_id`)) join `information_schema`.`innodb_locks` `bl` on(`bl`.`lock_id` = `w`.`blocking_lock_id`)) join `information_schema`.`innodb_locks` `rl` on(`rl`.`lock_id` = `w`.`requested_lock_id`)) order by `r`.`trx_wait_started` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `io_by_thread_by_latency`
---
-
-/*!50001 DROP TABLE IF EXISTS `io_by_thread_by_latency`*/;
-/*!50001 DROP VIEW IF EXISTS `io_by_thread_by_latency`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `io_by_thread_by_latency` AS select if(`performance_schema`.`threads`.`PROCESSLIST_ID` is null,substring_index(`performance_schema`.`threads`.`NAME`,'/',-1),concat(`performance_schema`.`threads`.`PROCESSLIST_USER`,'@',`performance_schema`.`threads`.`PROCESSLIST_HOST`)) AS `user`,sum(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`COUNT_STAR`) AS `total`,`sys`.`format_time`(sum(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`SUM_TIMER_WAIT`)) AS `total_latency`,`sys`.`format_time`(min(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`MIN_TIMER_WAIT`)) AS `min_latency`,`sys`.`format_time`(avg(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`AVG_TIMER_WAIT`)) AS `avg_latency`,`sys`.`format_time`(max(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`MAX_TIMER_WAIT`)) AS `max_latency`,`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`THREAD_ID` AS `thread_id`,`performance_schema`.`threads`.`PROCESSLIST_ID` AS `processlist_id` from (`performance_schema`.`events_waits_summary_by_thread_by_event_name` left join `performance_schema`.`threads` on(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`THREAD_ID` = `performance_schema`.`threads`.`THREAD_ID`)) where `performance_schema`.`events_waits_summary_by_thread_by_event_name`.`EVENT_NAME` like 'wait/io/file/%' and `performance_schema`.`events_waits_summary_by_thread_by_event_name`.`SUM_TIMER_WAIT` > 0 group by `performance_schema`.`events_waits_summary_by_thread_by_event_name`.`THREAD_ID`,`performance_schema`.`threads`.`PROCESSLIST_ID`,if(`performance_schema`.`threads`.`PROCESSLIST_ID` is null,substring_index(`performance_schema`.`threads`.`NAME`,'/',-1),concat(`performance_schema`.`threads`.`PROCESSLIST_USER`,'@',`performance_schema`.`threads`.`PROCESSLIST_HOST`)) order by sum(`performance_schema`.`events_waits_summary_by_thread_by_event_name`.`SUM_TIMER_WAIT`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `io_global_by_file_by_bytes`
---
-
-/*!50001 DROP TABLE IF EXISTS `io_global_by_file_by_bytes`*/;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_file_by_bytes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `io_global_by_file_by_bytes` AS select `sys`.`format_path`(`performance_schema`.`file_summary_by_instance`.`FILE_NAME`) AS `file`,`performance_schema`.`file_summary_by_instance`.`COUNT_READ` AS `count_read`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_READ`) AS `total_read`,`sys`.`format_bytes`(ifnull(`performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_READ` / nullif(`performance_schema`.`file_summary_by_instance`.`COUNT_READ`,0),0)) AS `avg_read`,`performance_schema`.`file_summary_by_instance`.`COUNT_WRITE` AS `count_write`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_WRITE`) AS `total_written`,`sys`.`format_bytes`(ifnull(`performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_WRITE` / nullif(`performance_schema`.`file_summary_by_instance`.`COUNT_WRITE`,0),0.00)) AS `avg_write`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_READ` + `performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_WRITE`) AS `total`,ifnull(round(100 - `performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_READ` / nullif(`performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_READ` + `performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_WRITE`,0) * 100,2),0.00) AS `write_pct` from `performance_schema`.`file_summary_by_instance` order by `performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_READ` + `performance_schema`.`file_summary_by_instance`.`SUM_NUMBER_OF_BYTES_WRITE` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `io_global_by_file_by_latency`
---
-
-/*!50001 DROP TABLE IF EXISTS `io_global_by_file_by_latency`*/;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_file_by_latency`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `io_global_by_file_by_latency` AS select `sys`.`format_path`(`performance_schema`.`file_summary_by_instance`.`FILE_NAME`) AS `file`,`performance_schema`.`file_summary_by_instance`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`file_summary_by_instance`.`SUM_TIMER_WAIT`) AS `total_latency`,`performance_schema`.`file_summary_by_instance`.`COUNT_READ` AS `count_read`,`sys`.`format_time`(`performance_schema`.`file_summary_by_instance`.`SUM_TIMER_READ`) AS `read_latency`,`performance_schema`.`file_summary_by_instance`.`COUNT_WRITE` AS `count_write`,`sys`.`format_time`(`performance_schema`.`file_summary_by_instance`.`SUM_TIMER_WRITE`) AS `write_latency`,`performance_schema`.`file_summary_by_instance`.`COUNT_MISC` AS `count_misc`,`sys`.`format_time`(`performance_schema`.`file_summary_by_instance`.`SUM_TIMER_MISC`) AS `misc_latency` from `performance_schema`.`file_summary_by_instance` order by `performance_schema`.`file_summary_by_instance`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `io_global_by_wait_by_bytes`
---
-
-/*!50001 DROP TABLE IF EXISTS `io_global_by_wait_by_bytes`*/;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_wait_by_bytes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `io_global_by_wait_by_bytes` AS select substring_index(`performance_schema`.`file_summary_by_event_name`.`EVENT_NAME`,'/',-2) AS `event_name`,`performance_schema`.`file_summary_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`MIN_TIMER_WAIT`) AS `min_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`AVG_TIMER_WAIT`) AS `avg_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`MAX_TIMER_WAIT`) AS `max_latency`,`performance_schema`.`file_summary_by_event_name`.`COUNT_READ` AS `count_read`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_READ`) AS `total_read`,`sys`.`format_bytes`(ifnull(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_READ` / nullif(`performance_schema`.`file_summary_by_event_name`.`COUNT_READ`,0),0)) AS `avg_read`,`performance_schema`.`file_summary_by_event_name`.`COUNT_WRITE` AS `count_write`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_WRITE`) AS `total_written`,`sys`.`format_bytes`(ifnull(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_WRITE` / nullif(`performance_schema`.`file_summary_by_event_name`.`COUNT_WRITE`,0),0)) AS `avg_written`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_WRITE` + `performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_READ`) AS `total_requested` from `performance_schema`.`file_summary_by_event_name` where `performance_schema`.`file_summary_by_event_name`.`EVENT_NAME` like 'wait/io/file/%' and `performance_schema`.`file_summary_by_event_name`.`COUNT_STAR` > 0 order by `performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_WRITE` + `performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_READ` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `io_global_by_wait_by_latency`
---
-
-/*!50001 DROP TABLE IF EXISTS `io_global_by_wait_by_latency`*/;
-/*!50001 DROP VIEW IF EXISTS `io_global_by_wait_by_latency`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `io_global_by_wait_by_latency` AS select substring_index(`performance_schema`.`file_summary_by_event_name`.`EVENT_NAME`,'/',-2) AS `event_name`,`performance_schema`.`file_summary_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`AVG_TIMER_WAIT`) AS `avg_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`MAX_TIMER_WAIT`) AS `max_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`SUM_TIMER_READ`) AS `read_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`SUM_TIMER_WRITE`) AS `write_latency`,`sys`.`format_time`(`performance_schema`.`file_summary_by_event_name`.`SUM_TIMER_MISC`) AS `misc_latency`,`performance_schema`.`file_summary_by_event_name`.`COUNT_READ` AS `count_read`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_READ`) AS `total_read`,`sys`.`format_bytes`(ifnull(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_READ` / nullif(`performance_schema`.`file_summary_by_event_name`.`COUNT_READ`,0),0)) AS `avg_read`,`performance_schema`.`file_summary_by_event_name`.`COUNT_WRITE` AS `count_write`,`sys`.`format_bytes`(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_WRITE`) AS `total_written`,`sys`.`format_bytes`(ifnull(`performance_schema`.`file_summary_by_event_name`.`SUM_NUMBER_OF_BYTES_WRITE` / nullif(`performance_schema`.`file_summary_by_event_name`.`COUNT_WRITE`,0),0)) AS `avg_written` from `performance_schema`.`file_summary_by_event_name` where `performance_schema`.`file_summary_by_event_name`.`EVENT_NAME` like 'wait/io/file/%' and `performance_schema`.`file_summary_by_event_name`.`COUNT_STAR` > 0 order by `performance_schema`.`file_summary_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `latest_file_io`
---
-
-/*!50001 DROP TABLE IF EXISTS `latest_file_io`*/;
-/*!50001 DROP VIEW IF EXISTS `latest_file_io`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `latest_file_io` AS select if(`information_schema`.`processlist`.`ID` is null,concat(substring_index(`performance_schema`.`threads`.`NAME`,'/',-1),':',`performance_schema`.`events_waits_history_long`.`THREAD_ID`),concat(`information_schema`.`processlist`.`USER`,'@',`information_schema`.`processlist`.`HOST`,':',`information_schema`.`processlist`.`ID`)) AS `thread`,`sys`.`format_path`(`performance_schema`.`events_waits_history_long`.`OBJECT_NAME`) AS `file`,`sys`.`format_time`(`performance_schema`.`events_waits_history_long`.`TIMER_WAIT`) AS `latency`,`performance_schema`.`events_waits_history_long`.`OPERATION` AS `operation`,`sys`.`format_bytes`(`performance_schema`.`events_waits_history_long`.`NUMBER_OF_BYTES`) AS `requested` from ((`performance_schema`.`events_waits_history_long` join `performance_schema`.`threads` on(`performance_schema`.`events_waits_history_long`.`THREAD_ID` = `performance_schema`.`threads`.`THREAD_ID`)) left join `information_schema`.`processlist` on(`performance_schema`.`threads`.`PROCESSLIST_ID` = `information_schema`.`processlist`.`ID`)) where `performance_schema`.`events_waits_history_long`.`OBJECT_NAME` is not null and `performance_schema`.`events_waits_history_long`.`EVENT_NAME` like 'wait/io/file/%' order by `performance_schema`.`events_waits_history_long`.`TIMER_START` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `memory_by_host_by_current_bytes`
---
-
-/*!50001 DROP TABLE IF EXISTS `memory_by_host_by_current_bytes`*/;
-/*!50001 DROP VIEW IF EXISTS `memory_by_host_by_current_bytes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `memory_by_host_by_current_bytes` AS select if(`performance_schema`.`memory_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`memory_summary_by_host_by_event_name`.`HOST`) AS `host`,sum(`performance_schema`.`memory_summary_by_host_by_event_name`.`CURRENT_COUNT_USED`) AS `current_count_used`,`sys`.`format_bytes`(sum(`performance_schema`.`memory_summary_by_host_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `current_allocated`,`sys`.`format_bytes`(ifnull(sum(`performance_schema`.`memory_summary_by_host_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`) / nullif(sum(`performance_schema`.`memory_summary_by_host_by_event_name`.`CURRENT_COUNT_USED`),0),0)) AS `current_avg_alloc`,`sys`.`format_bytes`(max(`performance_schema`.`memory_summary_by_host_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `current_max_alloc`,`sys`.`format_bytes`(sum(`performance_schema`.`memory_summary_by_host_by_event_name`.`SUM_NUMBER_OF_BYTES_ALLOC`)) AS `total_allocated` from `performance_schema`.`memory_summary_by_host_by_event_name` group by if(`performance_schema`.`memory_summary_by_host_by_event_name`.`HOST` is null,'background',`performance_schema`.`memory_summary_by_host_by_event_name`.`HOST`) order by sum(`performance_schema`.`memory_summary_by_host_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `memory_by_thread_by_current_bytes`
---
-
-/*!50001 DROP TABLE IF EXISTS `memory_by_thread_by_current_bytes`*/;
-/*!50001 DROP VIEW IF EXISTS `memory_by_thread_by_current_bytes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `memory_by_thread_by_current_bytes` AS select `mt`.`THREAD_ID` AS `thread_id`,if(`t`.`NAME` = 'thread/sql/one_connection',concat(`t`.`PROCESSLIST_USER`,'@',`t`.`PROCESSLIST_HOST`),replace(`t`.`NAME`,'thread/','')) AS `user`,sum(`mt`.`CURRENT_COUNT_USED`) AS `current_count_used`,`sys`.`format_bytes`(sum(`mt`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `current_allocated`,`sys`.`format_bytes`(ifnull(sum(`mt`.`CURRENT_NUMBER_OF_BYTES_USED`) / nullif(sum(`mt`.`CURRENT_COUNT_USED`),0),0)) AS `current_avg_alloc`,`sys`.`format_bytes`(max(`mt`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `current_max_alloc`,`sys`.`format_bytes`(sum(`mt`.`SUM_NUMBER_OF_BYTES_ALLOC`)) AS `total_allocated` from (`performance_schema`.`memory_summary_by_thread_by_event_name` `mt` join `performance_schema`.`threads` `t` on(`mt`.`THREAD_ID` = `t`.`THREAD_ID`)) group by `mt`.`THREAD_ID`,if(`t`.`NAME` = 'thread/sql/one_connection',concat(`t`.`PROCESSLIST_USER`,'@',`t`.`PROCESSLIST_HOST`),replace(`t`.`NAME`,'thread/','')) order by sum(`mt`.`CURRENT_NUMBER_OF_BYTES_USED`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `memory_by_user_by_current_bytes`
---
-
-/*!50001 DROP TABLE IF EXISTS `memory_by_user_by_current_bytes`*/;
-/*!50001 DROP VIEW IF EXISTS `memory_by_user_by_current_bytes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `memory_by_user_by_current_bytes` AS select if(`performance_schema`.`memory_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`memory_summary_by_user_by_event_name`.`USER`) AS `user`,sum(`performance_schema`.`memory_summary_by_user_by_event_name`.`CURRENT_COUNT_USED`) AS `current_count_used`,`sys`.`format_bytes`(sum(`performance_schema`.`memory_summary_by_user_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `current_allocated`,`sys`.`format_bytes`(ifnull(sum(`performance_schema`.`memory_summary_by_user_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`) / nullif(sum(`performance_schema`.`memory_summary_by_user_by_event_name`.`CURRENT_COUNT_USED`),0),0)) AS `current_avg_alloc`,`sys`.`format_bytes`(max(`performance_schema`.`memory_summary_by_user_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `current_max_alloc`,`sys`.`format_bytes`(sum(`performance_schema`.`memory_summary_by_user_by_event_name`.`SUM_NUMBER_OF_BYTES_ALLOC`)) AS `total_allocated` from `performance_schema`.`memory_summary_by_user_by_event_name` group by if(`performance_schema`.`memory_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`memory_summary_by_user_by_event_name`.`USER`) order by sum(`performance_schema`.`memory_summary_by_user_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `memory_global_by_current_bytes`
---
-
-/*!50001 DROP TABLE IF EXISTS `memory_global_by_current_bytes`*/;
-/*!50001 DROP VIEW IF EXISTS `memory_global_by_current_bytes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `memory_global_by_current_bytes` AS select `performance_schema`.`memory_summary_global_by_event_name`.`EVENT_NAME` AS `event_name`,`performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_COUNT_USED` AS `current_count`,`sys`.`format_bytes`(`performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`) AS `current_alloc`,`sys`.`format_bytes`(ifnull(`performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED` / nullif(`performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_COUNT_USED`,0),0)) AS `current_avg_alloc`,`performance_schema`.`memory_summary_global_by_event_name`.`HIGH_COUNT_USED` AS `high_count`,`sys`.`format_bytes`(`performance_schema`.`memory_summary_global_by_event_name`.`HIGH_NUMBER_OF_BYTES_USED`) AS `high_alloc`,`sys`.`format_bytes`(ifnull(`performance_schema`.`memory_summary_global_by_event_name`.`HIGH_NUMBER_OF_BYTES_USED` / nullif(`performance_schema`.`memory_summary_global_by_event_name`.`HIGH_COUNT_USED`,0),0)) AS `high_avg_alloc` from `performance_schema`.`memory_summary_global_by_event_name` where `performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED` > 0 order by `performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `memory_global_total`
---
-
-/*!50001 DROP TABLE IF EXISTS `memory_global_total`*/;
-/*!50001 DROP VIEW IF EXISTS `memory_global_total`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `memory_global_total` AS select `sys`.`format_bytes`(sum(`performance_schema`.`memory_summary_global_by_event_name`.`CURRENT_NUMBER_OF_BYTES_USED`)) AS `total_allocated` from `performance_schema`.`memory_summary_global_by_event_name` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `metrics`
---
-
-/*!50001 DROP TABLE IF EXISTS `metrics`*/;
-/*!50001 DROP VIEW IF EXISTS `metrics`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `metrics` AS (select lcase(`performance_schema`.`global_status`.`VARIABLE_NAME`) AS `Variable_name`,`performance_schema`.`global_status`.`VARIABLE_VALUE` AS `Variable_value`,'Global Status' AS `Type`,'YES' AS `Enabled` from `performance_schema`.`global_status`) union all (select `information_schema`.`INNODB_METRICS`.`NAME` AS `Variable_name`,`information_schema`.`INNODB_METRICS`.`COUNT` AS `Variable_value`,concat('InnoDB Metrics - ',`information_schema`.`INNODB_METRICS`.`SUBSYSTEM`) AS `Type`,'YES' AS `Enabled` from `information_schema`.`INNODB_METRICS` where `information_schema`.`INNODB_METRICS`.`NAME` not in ('lock_row_lock_time','lock_row_lock_time_avg','lock_row_lock_time_max','lock_row_lock_waits','buffer_pool_reads','buffer_pool_read_requests','buffer_pool_write_requests','buffer_pool_wait_free','buffer_pool_read_ahead','buffer_pool_read_ahead_evicted','buffer_pool_pages_total','buffer_pool_pages_misc','buffer_pool_pages_data','buffer_pool_bytes_data','buffer_pool_pages_dirty','buffer_pool_bytes_dirty','buffer_pool_pages_free','buffer_pages_created','buffer_pages_written','buffer_pages_read','buffer_data_reads','buffer_data_written','file_num_open_files','os_log_bytes_written','os_log_fsyncs','os_log_pending_fsyncs','os_log_pending_writes','log_waits','log_write_requests','log_writes','innodb_dblwr_writes','innodb_dblwr_pages_written','innodb_page_size')) union all (select 'NOW()' AS `Variable_name`,current_timestamp(3) AS `Variable_value`,'System Time' AS `Type`,'YES' AS `Enabled`) union all (select 'UNIX_TIMESTAMP()' AS `Variable_name`,round(unix_timestamp(current_timestamp(3)),3) AS `Variable_value`,'System Time' AS `Type`,'YES' AS `Enabled`) order by `Type`,`Variable_name` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `processlist`
---
-
-/*!50001 DROP TABLE IF EXISTS `processlist`*/;
-/*!50001 DROP VIEW IF EXISTS `processlist`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `processlist` AS select `pps`.`THREAD_ID` AS `thd_id`,`pps`.`PROCESSLIST_ID` AS `conn_id`,if(`pps`.`NAME` = 'thread/sql/one_connection',concat(`pps`.`PROCESSLIST_USER`,'@',`pps`.`PROCESSLIST_HOST`),replace(`pps`.`NAME`,'thread/','')) AS `user`,`pps`.`PROCESSLIST_DB` AS `db`,`pps`.`PROCESSLIST_COMMAND` AS `command`,`pps`.`PROCESSLIST_STATE` AS `state`,`pps`.`PROCESSLIST_TIME` AS `time`,`sys`.`format_statement`(`pps`.`PROCESSLIST_INFO`) AS `current_statement`,if(`esc`.`END_EVENT_ID` is null,`sys`.`format_time`(`esc`.`TIMER_WAIT`),NULL) AS `statement_latency`,if(`esc`.`END_EVENT_ID` is null,round(100 * (`estc`.`WORK_COMPLETED` / `estc`.`WORK_ESTIMATED`),2),NULL) AS `progress`,`sys`.`format_time`(`esc`.`LOCK_TIME`) AS `lock_latency`,`esc`.`ROWS_EXAMINED` AS `rows_examined`,`esc`.`ROWS_SENT` AS `rows_sent`,`esc`.`ROWS_AFFECTED` AS `rows_affected`,`esc`.`CREATED_TMP_TABLES` AS `tmp_tables`,`esc`.`CREATED_TMP_DISK_TABLES` AS `tmp_disk_tables`,if(`esc`.`NO_GOOD_INDEX_USED` > 0 or `esc`.`NO_INDEX_USED` > 0,'YES','NO') AS `full_scan`,if(`esc`.`END_EVENT_ID` is not null,`sys`.`format_statement`(`esc`.`SQL_TEXT`),NULL) AS `last_statement`,if(`esc`.`END_EVENT_ID` is not null,`sys`.`format_time`(`esc`.`TIMER_WAIT`),NULL) AS `last_statement_latency`,`sys`.`format_bytes`(`mem`.`current_allocated`) AS `current_memory`,`ewc`.`EVENT_NAME` AS `last_wait`,if(`ewc`.`END_EVENT_ID` is null and `ewc`.`EVENT_NAME` is not null,'Still Waiting',`sys`.`format_time`(`ewc`.`TIMER_WAIT`)) AS `last_wait_latency`,`ewc`.`SOURCE` AS `source`,`sys`.`format_time`(`etc`.`TIMER_WAIT`) AS `trx_latency`,`etc`.`STATE` AS `trx_state`,`etc`.`AUTOCOMMIT` AS `trx_autocommit`,`conattr_pid`.`ATTR_VALUE` AS `pid`,`conattr_progname`.`ATTR_VALUE` AS `program_name` from (((((((`performance_schema`.`threads` `pps` left join `performance_schema`.`events_waits_current` `ewc` on(`pps`.`THREAD_ID` = `ewc`.`THREAD_ID`)) left join `performance_schema`.`events_stages_current` `estc` on(`pps`.`THREAD_ID` = `estc`.`THREAD_ID`)) left join `performance_schema`.`events_statements_current` `esc` on(`pps`.`THREAD_ID` = `esc`.`THREAD_ID`)) left join `performance_schema`.`events_transactions_current` `etc` on(`pps`.`THREAD_ID` = `etc`.`THREAD_ID`)) left join `sys`.`x$memory_by_thread_by_current_bytes` `mem` on(`pps`.`THREAD_ID` = `mem`.`thread_id`)) left join `performance_schema`.`session_connect_attrs` `conattr_pid` on(`conattr_pid`.`PROCESSLIST_ID` = `pps`.`PROCESSLIST_ID` and `conattr_pid`.`ATTR_NAME` = '_pid')) left join `performance_schema`.`session_connect_attrs` `conattr_progname` on(`conattr_progname`.`PROCESSLIST_ID` = `pps`.`PROCESSLIST_ID` and `conattr_progname`.`ATTR_NAME` = 'program_name')) order by `pps`.`PROCESSLIST_TIME` desc,if(`ewc`.`END_EVENT_ID` is null and `ewc`.`EVENT_NAME` is not null,'Still Waiting',`sys`.`format_time`(`ewc`.`TIMER_WAIT`)) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `ps_check_lost_instrumentation`
---
-
-/*!50001 DROP TABLE IF EXISTS `ps_check_lost_instrumentation`*/;
-/*!50001 DROP VIEW IF EXISTS `ps_check_lost_instrumentation`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `ps_check_lost_instrumentation` AS select `performance_schema`.`global_status`.`VARIABLE_NAME` AS `variable_name`,`performance_schema`.`global_status`.`VARIABLE_VALUE` AS `variable_value` from `performance_schema`.`global_status` where `performance_schema`.`global_status`.`VARIABLE_NAME` like 'perf%lost' and `performance_schema`.`global_status`.`VARIABLE_VALUE` > 0 */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_auto_increment_columns`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_auto_increment_columns`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_auto_increment_columns`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_auto_increment_columns` AS select `information_schema`.`COLUMNS`.`TABLE_SCHEMA` AS `table_schema`,`information_schema`.`COLUMNS`.`TABLE_NAME` AS `table_name`,`information_schema`.`COLUMNS`.`COLUMN_NAME` AS `column_name`,`information_schema`.`COLUMNS`.`DATA_TYPE` AS `data_type`,`information_schema`.`COLUMNS`.`COLUMN_TYPE` AS `column_type`,locate('unsigned',`information_schema`.`COLUMNS`.`COLUMN_TYPE`) = 0 AS `is_signed`,locate('unsigned',`information_schema`.`COLUMNS`.`COLUMN_TYPE`) > 0 AS `is_unsigned`,case `information_schema`.`COLUMNS`.`DATA_TYPE` when 'tinyint' then 255 when 'smallint' then 65535 when 'mediumint' then 16777215 when 'int' then 4294967295 when 'bigint' then 18446744073709551615 end >> if(locate('unsigned',`information_schema`.`COLUMNS`.`COLUMN_TYPE`) > 0,0,1) AS `max_value`,`information_schema`.`TABLES`.`AUTO_INCREMENT` AS `auto_increment`,`information_schema`.`TABLES`.`AUTO_INCREMENT` / (case `information_schema`.`COLUMNS`.`DATA_TYPE` when 'tinyint' then 255 when 'smallint' then 65535 when 'mediumint' then 16777215 when 'int' then 4294967295 when 'bigint' then 18446744073709551615 end >> if(locate('unsigned',`information_schema`.`COLUMNS`.`COLUMN_TYPE`) > 0,0,1)) AS `auto_increment_ratio` from (`INFORMATION_SCHEMA`.`COLUMNS` join `INFORMATION_SCHEMA`.`TABLES` on(`information_schema`.`COLUMNS`.`TABLE_SCHEMA` = `information_schema`.`TABLES`.`TABLE_SCHEMA` and `information_schema`.`COLUMNS`.`TABLE_NAME` = `information_schema`.`TABLES`.`TABLE_NAME`)) where `information_schema`.`COLUMNS`.`TABLE_SCHEMA` not in ('mysql','sys','INFORMATION_SCHEMA','performance_schema') and `information_schema`.`TABLES`.`TABLE_TYPE` = 'BASE TABLE' and `information_schema`.`COLUMNS`.`EXTRA` = 'auto_increment' order by `information_schema`.`TABLES`.`AUTO_INCREMENT` / (case `information_schema`.`COLUMNS`.`DATA_TYPE` when 'tinyint' then 255 when 'smallint' then 65535 when 'mediumint' then 16777215 when 'int' then 4294967295 when 'bigint' then 18446744073709551615 end >> if(locate('unsigned',`information_schema`.`COLUMNS`.`COLUMN_TYPE`) > 0,0,1)) desc,case `information_schema`.`COLUMNS`.`DATA_TYPE` when 'tinyint' then 255 when 'smallint' then 65535 when 'mediumint' then 16777215 when 'int' then 4294967295 when 'bigint' then 18446744073709551615 end >> if(locate('unsigned',`information_schema`.`COLUMNS`.`COLUMN_TYPE`) > 0,0,1) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_index_statistics`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_index_statistics`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_index_statistics`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_index_statistics` AS select `performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_SCHEMA` AS `table_schema`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_NAME` AS `table_name`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`INDEX_NAME` AS `index_name`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_FETCH` AS `rows_selected`,`sys`.`format_time`(`performance_schema`.`table_io_waits_summary_by_index_usage`.`SUM_TIMER_FETCH`) AS `select_latency`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_INSERT` AS `rows_inserted`,`sys`.`format_time`(`performance_schema`.`table_io_waits_summary_by_index_usage`.`SUM_TIMER_INSERT`) AS `insert_latency`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_UPDATE` AS `rows_updated`,`sys`.`format_time`(`performance_schema`.`table_io_waits_summary_by_index_usage`.`SUM_TIMER_UPDATE`) AS `update_latency`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_DELETE` AS `rows_deleted`,`sys`.`format_time`(`performance_schema`.`table_io_waits_summary_by_index_usage`.`SUM_TIMER_INSERT`) AS `delete_latency` from `performance_schema`.`table_io_waits_summary_by_index_usage` where `performance_schema`.`table_io_waits_summary_by_index_usage`.`INDEX_NAME` is not null order by `performance_schema`.`table_io_waits_summary_by_index_usage`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_object_overview`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_object_overview`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_object_overview`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_object_overview` AS select `information_schema`.`routines`.`ROUTINE_SCHEMA` AS `db`,`information_schema`.`routines`.`ROUTINE_TYPE` AS `object_type`,count(0) AS `count` from `information_schema`.`routines` group by `information_schema`.`routines`.`ROUTINE_SCHEMA`,`information_schema`.`routines`.`ROUTINE_TYPE` union select `information_schema`.`tables`.`TABLE_SCHEMA` AS `TABLE_SCHEMA`,`information_schema`.`tables`.`TABLE_TYPE` AS `TABLE_TYPE`,count(0) AS `COUNT(*)` from `information_schema`.`tables` group by `information_schema`.`tables`.`TABLE_SCHEMA`,`information_schema`.`tables`.`TABLE_TYPE` union select `information_schema`.`statistics`.`TABLE_SCHEMA` AS `TABLE_SCHEMA`,concat('INDEX (',`information_schema`.`statistics`.`INDEX_TYPE`,')') AS `CONCAT('INDEX (', INDEX_TYPE, ')')`,count(0) AS `COUNT(*)` from `information_schema`.`statistics` group by `information_schema`.`statistics`.`TABLE_SCHEMA`,`information_schema`.`statistics`.`INDEX_TYPE` union select `information_schema`.`triggers`.`TRIGGER_SCHEMA` AS `TRIGGER_SCHEMA`,'TRIGGER' AS `TRIGGER`,count(0) AS `COUNT(*)` from `information_schema`.`triggers` group by `information_schema`.`triggers`.`TRIGGER_SCHEMA` union select `information_schema`.`events`.`EVENT_SCHEMA` AS `EVENT_SCHEMA`,'EVENT' AS `EVENT`,count(0) AS `COUNT(*)` from `information_schema`.`events` group by `information_schema`.`events`.`EVENT_SCHEMA` order by `db`,`object_type` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_redundant_indexes`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_redundant_indexes`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_redundant_indexes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_redundant_indexes` AS select `redundant_keys`.`table_schema` AS `table_schema`,`redundant_keys`.`table_name` AS `table_name`,`redundant_keys`.`index_name` AS `redundant_index_name`,`redundant_keys`.`index_columns` AS `redundant_index_columns`,`redundant_keys`.`non_unique` AS `redundant_index_non_unique`,`dominant_keys`.`index_name` AS `dominant_index_name`,`dominant_keys`.`index_columns` AS `dominant_index_columns`,`dominant_keys`.`non_unique` AS `dominant_index_non_unique`,if(`redundant_keys`.`subpart_exists` <> 0 or `dominant_keys`.`subpart_exists` <> 0,1,0) AS `subpart_exists`,concat('ALTER TABLE `',`redundant_keys`.`table_schema`,'`.`',`redundant_keys`.`table_name`,'` DROP INDEX `',`redundant_keys`.`index_name`,'`') AS `sql_drop_index` from (`sys`.`x$schema_flattened_keys` `redundant_keys` join `sys`.`x$schema_flattened_keys` `dominant_keys` on(`redundant_keys`.`table_schema` = `dominant_keys`.`table_schema` and `redundant_keys`.`table_name` = `dominant_keys`.`table_name`)) where `redundant_keys`.`index_name` <> `dominant_keys`.`index_name` and (`redundant_keys`.`index_columns` = `dominant_keys`.`index_columns` and (`redundant_keys`.`non_unique` > `dominant_keys`.`non_unique` or `redundant_keys`.`non_unique` = `dominant_keys`.`non_unique` and if(`redundant_keys`.`index_name` = 'PRIMARY','',`redundant_keys`.`index_name`) > if(`dominant_keys`.`index_name` = 'PRIMARY','',`dominant_keys`.`index_name`)) or locate(concat(`redundant_keys`.`index_columns`,','),`dominant_keys`.`index_columns`) = 1 and `redundant_keys`.`non_unique` = 1 or locate(concat(`dominant_keys`.`index_columns`,','),`redundant_keys`.`index_columns`) = 1 and `dominant_keys`.`non_unique` = 0) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_table_lock_waits`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_table_lock_waits`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_table_lock_waits`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_table_lock_waits` AS select `g`.`OBJECT_SCHEMA` AS `object_schema`,`g`.`OBJECT_NAME` AS `object_name`,`pt`.`THREAD_ID` AS `waiting_thread_id`,`pt`.`PROCESSLIST_ID` AS `waiting_pid`,`sys`.`ps_thread_account`(`p`.`OWNER_THREAD_ID`) AS `waiting_account`,`p`.`LOCK_TYPE` AS `waiting_lock_type`,`p`.`LOCK_DURATION` AS `waiting_lock_duration`,`sys`.`format_statement`(`pt`.`PROCESSLIST_INFO`) AS `waiting_query`,`pt`.`PROCESSLIST_TIME` AS `waiting_query_secs`,`ps`.`ROWS_AFFECTED` AS `waiting_query_rows_affected`,`ps`.`ROWS_EXAMINED` AS `waiting_query_rows_examined`,`gt`.`THREAD_ID` AS `blocking_thread_id`,`gt`.`PROCESSLIST_ID` AS `blocking_pid`,`sys`.`ps_thread_account`(`g`.`OWNER_THREAD_ID`) AS `blocking_account`,`g`.`LOCK_TYPE` AS `blocking_lock_type`,`g`.`LOCK_DURATION` AS `blocking_lock_duration`,concat('KILL QUERY ',`gt`.`PROCESSLIST_ID`) AS `sql_kill_blocking_query`,concat('KILL ',`gt`.`PROCESSLIST_ID`) AS `sql_kill_blocking_connection` from (((((`performance_schema`.`metadata_locks` `g` join `performance_schema`.`metadata_locks` `p` on(`g`.`OBJECT_TYPE` = `p`.`OBJECT_TYPE` and `g`.`OBJECT_SCHEMA` = `p`.`OBJECT_SCHEMA` and `g`.`OBJECT_NAME` = `p`.`OBJECT_NAME` and `g`.`LOCK_STATUS` = 'GRANTED' and `p`.`LOCK_STATUS` = 'PENDING')) join `performance_schema`.`threads` `gt` on(`g`.`OWNER_THREAD_ID` = `gt`.`THREAD_ID`)) join `performance_schema`.`threads` `pt` on(`p`.`OWNER_THREAD_ID` = `pt`.`THREAD_ID`)) left join `performance_schema`.`events_statements_current` `gs` on(`g`.`OWNER_THREAD_ID` = `gs`.`THREAD_ID`)) left join `performance_schema`.`events_statements_current` `ps` on(`p`.`OWNER_THREAD_ID` = `ps`.`THREAD_ID`)) where `g`.`OBJECT_TYPE` = 'TABLE' */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_table_statistics`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_table_statistics`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_table_statistics`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_table_statistics` AS select `pst`.`OBJECT_SCHEMA` AS `table_schema`,`pst`.`OBJECT_NAME` AS `table_name`,`sys`.`format_time`(`pst`.`SUM_TIMER_WAIT`) AS `total_latency`,`pst`.`COUNT_FETCH` AS `rows_fetched`,`sys`.`format_time`(`pst`.`SUM_TIMER_FETCH`) AS `fetch_latency`,`pst`.`COUNT_INSERT` AS `rows_inserted`,`sys`.`format_time`(`pst`.`SUM_TIMER_INSERT`) AS `insert_latency`,`pst`.`COUNT_UPDATE` AS `rows_updated`,`sys`.`format_time`(`pst`.`SUM_TIMER_UPDATE`) AS `update_latency`,`pst`.`COUNT_DELETE` AS `rows_deleted`,`sys`.`format_time`(`pst`.`SUM_TIMER_DELETE`) AS `delete_latency`,`fsbi`.`count_read` AS `io_read_requests`,`sys`.`format_bytes`(`fsbi`.`sum_number_of_bytes_read`) AS `io_read`,`sys`.`format_time`(`fsbi`.`sum_timer_read`) AS `io_read_latency`,`fsbi`.`count_write` AS `io_write_requests`,`sys`.`format_bytes`(`fsbi`.`sum_number_of_bytes_write`) AS `io_write`,`sys`.`format_time`(`fsbi`.`sum_timer_write`) AS `io_write_latency`,`fsbi`.`count_misc` AS `io_misc_requests`,`sys`.`format_time`(`fsbi`.`sum_timer_misc`) AS `io_misc_latency` from (`performance_schema`.`table_io_waits_summary_by_table` `pst` left join `sys`.`x$ps_schema_table_statistics_io` `fsbi` on(`pst`.`OBJECT_SCHEMA` = `fsbi`.`table_schema` and `pst`.`OBJECT_NAME` = `fsbi`.`table_name`)) order by `pst`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_table_statistics_with_buffer`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_table_statistics_with_buffer`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_table_statistics_with_buffer`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_table_statistics_with_buffer` AS select `pst`.`OBJECT_SCHEMA` AS `table_schema`,`pst`.`OBJECT_NAME` AS `table_name`,`pst`.`COUNT_FETCH` AS `rows_fetched`,`sys`.`format_time`(`pst`.`SUM_TIMER_FETCH`) AS `fetch_latency`,`pst`.`COUNT_INSERT` AS `rows_inserted`,`sys`.`format_time`(`pst`.`SUM_TIMER_INSERT`) AS `insert_latency`,`pst`.`COUNT_UPDATE` AS `rows_updated`,`sys`.`format_time`(`pst`.`SUM_TIMER_UPDATE`) AS `update_latency`,`pst`.`COUNT_DELETE` AS `rows_deleted`,`sys`.`format_time`(`pst`.`SUM_TIMER_DELETE`) AS `delete_latency`,`fsbi`.`count_read` AS `io_read_requests`,`sys`.`format_bytes`(`fsbi`.`sum_number_of_bytes_read`) AS `io_read`,`sys`.`format_time`(`fsbi`.`sum_timer_read`) AS `io_read_latency`,`fsbi`.`count_write` AS `io_write_requests`,`sys`.`format_bytes`(`fsbi`.`sum_number_of_bytes_write`) AS `io_write`,`sys`.`format_time`(`fsbi`.`sum_timer_write`) AS `io_write_latency`,`fsbi`.`count_misc` AS `io_misc_requests`,`sys`.`format_time`(`fsbi`.`sum_timer_misc`) AS `io_misc_latency`,`sys`.`format_bytes`(`ibp`.`allocated`) AS `innodb_buffer_allocated`,`sys`.`format_bytes`(`ibp`.`data`) AS `innodb_buffer_data`,`sys`.`format_bytes`(`ibp`.`allocated` - `ibp`.`data`) AS `innodb_buffer_free`,`ibp`.`pages` AS `innodb_buffer_pages`,`ibp`.`pages_hashed` AS `innodb_buffer_pages_hashed`,`ibp`.`pages_old` AS `innodb_buffer_pages_old`,`ibp`.`rows_cached` AS `innodb_buffer_rows_cached` from ((`performance_schema`.`table_io_waits_summary_by_table` `pst` left join `sys`.`x$ps_schema_table_statistics_io` `fsbi` on(`pst`.`OBJECT_SCHEMA` = `fsbi`.`table_schema` and `pst`.`OBJECT_NAME` = `fsbi`.`table_name`)) left join `sys`.`x$innodb_buffer_stats_by_table` `ibp` on(`pst`.`OBJECT_SCHEMA` = `ibp`.`object_schema` and `pst`.`OBJECT_NAME` = `ibp`.`object_name`)) order by `pst`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_tables_with_full_table_scans`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_tables_with_full_table_scans`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_tables_with_full_table_scans`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_tables_with_full_table_scans` AS select `performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_SCHEMA` AS `object_schema`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_NAME` AS `object_name`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_READ` AS `rows_full_scanned`,`sys`.`format_time`(`performance_schema`.`table_io_waits_summary_by_index_usage`.`SUM_TIMER_WAIT`) AS `latency` from `performance_schema`.`table_io_waits_summary_by_index_usage` where `performance_schema`.`table_io_waits_summary_by_index_usage`.`INDEX_NAME` is null and `performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_READ` > 0 order by `performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_READ` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `schema_unused_indexes`
---
-
-/*!50001 DROP TABLE IF EXISTS `schema_unused_indexes`*/;
-/*!50001 DROP VIEW IF EXISTS `schema_unused_indexes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `schema_unused_indexes` AS select `performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_SCHEMA` AS `object_schema`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_NAME` AS `object_name`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`INDEX_NAME` AS `index_name` from `performance_schema`.`table_io_waits_summary_by_index_usage` where `performance_schema`.`table_io_waits_summary_by_index_usage`.`INDEX_NAME` is not null and `performance_schema`.`table_io_waits_summary_by_index_usage`.`COUNT_STAR` = 0 and `performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_SCHEMA` <> 'mysql' and `performance_schema`.`table_io_waits_summary_by_index_usage`.`INDEX_NAME` <> 'PRIMARY' order by `performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_SCHEMA`,`performance_schema`.`table_io_waits_summary_by_index_usage`.`OBJECT_NAME` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `session`
---
-
-/*!50001 DROP TABLE IF EXISTS `session`*/;
-/*!50001 DROP VIEW IF EXISTS `session`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `session` AS select `processlist`.`thd_id` AS `thd_id`,`processlist`.`conn_id` AS `conn_id`,`processlist`.`user` AS `user`,`processlist`.`db` AS `db`,`processlist`.`command` AS `command`,`processlist`.`state` AS `state`,`processlist`.`time` AS `time`,`processlist`.`current_statement` AS `current_statement`,`processlist`.`statement_latency` AS `statement_latency`,`processlist`.`progress` AS `progress`,`processlist`.`lock_latency` AS `lock_latency`,`processlist`.`rows_examined` AS `rows_examined`,`processlist`.`rows_sent` AS `rows_sent`,`processlist`.`rows_affected` AS `rows_affected`,`processlist`.`tmp_tables` AS `tmp_tables`,`processlist`.`tmp_disk_tables` AS `tmp_disk_tables`,`processlist`.`full_scan` AS `full_scan`,`processlist`.`last_statement` AS `last_statement`,`processlist`.`last_statement_latency` AS `last_statement_latency`,`processlist`.`current_memory` AS `current_memory`,`processlist`.`last_wait` AS `last_wait`,`processlist`.`last_wait_latency` AS `last_wait_latency`,`processlist`.`source` AS `source`,`processlist`.`trx_latency` AS `trx_latency`,`processlist`.`trx_state` AS `trx_state`,`processlist`.`trx_autocommit` AS `trx_autocommit`,`processlist`.`pid` AS `pid`,`processlist`.`program_name` AS `program_name` from `sys`.`processlist` where `processlist`.`conn_id` is not null and `processlist`.`command` <> 'Daemon' */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `session_ssl_status`
---
-
-/*!50001 DROP TABLE IF EXISTS `session_ssl_status`*/;
-/*!50001 DROP VIEW IF EXISTS `session_ssl_status`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `session_ssl_status` AS select `sslver`.`THREAD_ID` AS `thread_id`,`sslver`.`VARIABLE_VALUE` AS `ssl_version`,`sslcip`.`VARIABLE_VALUE` AS `ssl_cipher`,`sslreuse`.`VARIABLE_VALUE` AS `ssl_sessions_reused` from ((`performance_schema`.`status_by_thread` `sslver` left join `performance_schema`.`status_by_thread` `sslcip` on(`sslcip`.`THREAD_ID` = `sslver`.`THREAD_ID` and `sslcip`.`VARIABLE_NAME` = 'Ssl_cipher')) left join `performance_schema`.`status_by_thread` `sslreuse` on(`sslreuse`.`THREAD_ID` = `sslver`.`THREAD_ID` and `sslreuse`.`VARIABLE_NAME` = 'Ssl_sessions_reused')) where `sslver`.`VARIABLE_NAME` = 'Ssl_version' */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `statement_analysis`
---
-
-/*!50001 DROP TABLE IF EXISTS `statement_analysis`*/;
-/*!50001 DROP VIEW IF EXISTS `statement_analysis`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `statement_analysis` AS select `sys`.`format_statement`(`performance_schema`.`events_statements_summary_by_digest`.`DIGEST_TEXT`) AS `query`,`performance_schema`.`events_statements_summary_by_digest`.`SCHEMA_NAME` AS `db`,if(`performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_GOOD_INDEX_USED` > 0 or `performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_INDEX_USED` > 0,'*','') AS `full_scan`,`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR` AS `exec_count`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ERRORS` AS `err_count`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_WARNINGS` AS `warn_count`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`MAX_TIMER_WAIT`) AS `max_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`AVG_TIMER_WAIT`) AS `avg_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`SUM_LOCK_TIME`) AS `lock_latency`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_SENT` AS `rows_sent`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_SENT` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0),0) AS `rows_sent_avg`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_EXAMINED` AS `rows_examined`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_EXAMINED` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0),0) AS `rows_examined_avg`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_AFFECTED` AS `rows_affected`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_AFFECTED` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0),0) AS `rows_affected_avg`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_TABLES` AS `tmp_tables`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_DISK_TABLES` AS `tmp_disk_tables`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_ROWS` AS `rows_sorted`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_MERGE_PASSES` AS `sort_merge_passes`,`performance_schema`.`events_statements_summary_by_digest`.`DIGEST` AS `digest`,`performance_schema`.`events_statements_summary_by_digest`.`FIRST_SEEN` AS `first_seen`,`performance_schema`.`events_statements_summary_by_digest`.`LAST_SEEN` AS `last_seen` from `performance_schema`.`events_statements_summary_by_digest` order by `performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `statements_with_errors_or_warnings`
---
-
-/*!50001 DROP TABLE IF EXISTS `statements_with_errors_or_warnings`*/;
-/*!50001 DROP VIEW IF EXISTS `statements_with_errors_or_warnings`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `statements_with_errors_or_warnings` AS select `sys`.`format_statement`(`performance_schema`.`events_statements_summary_by_digest`.`DIGEST_TEXT`) AS `query`,`performance_schema`.`events_statements_summary_by_digest`.`SCHEMA_NAME` AS `db`,`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR` AS `exec_count`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ERRORS` AS `errors`,ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_ERRORS` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0) * 100 AS `error_pct`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_WARNINGS` AS `warnings`,ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_WARNINGS` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0) * 100 AS `warning_pct`,`performance_schema`.`events_statements_summary_by_digest`.`FIRST_SEEN` AS `first_seen`,`performance_schema`.`events_statements_summary_by_digest`.`LAST_SEEN` AS `last_seen`,`performance_schema`.`events_statements_summary_by_digest`.`DIGEST` AS `digest` from `performance_schema`.`events_statements_summary_by_digest` where `performance_schema`.`events_statements_summary_by_digest`.`SUM_ERRORS` > 0 or `performance_schema`.`events_statements_summary_by_digest`.`SUM_WARNINGS` > 0 order by `performance_schema`.`events_statements_summary_by_digest`.`SUM_ERRORS` desc,`performance_schema`.`events_statements_summary_by_digest`.`SUM_WARNINGS` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `statements_with_full_table_scans`
---
-
-/*!50001 DROP TABLE IF EXISTS `statements_with_full_table_scans`*/;
-/*!50001 DROP VIEW IF EXISTS `statements_with_full_table_scans`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `statements_with_full_table_scans` AS select `sys`.`format_statement`(`performance_schema`.`events_statements_summary_by_digest`.`DIGEST_TEXT`) AS `query`,`performance_schema`.`events_statements_summary_by_digest`.`SCHEMA_NAME` AS `db`,`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR` AS `exec_count`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT`) AS `total_latency`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_INDEX_USED` AS `no_index_used_count`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_GOOD_INDEX_USED` AS `no_good_index_used_count`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_INDEX_USED` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0) * 100,0) AS `no_index_used_pct`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_SENT` AS `rows_sent`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_EXAMINED` AS `rows_examined`,round(`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_SENT` / `performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0) AS `rows_sent_avg`,round(`performance_schema`.`events_statements_summary_by_digest`.`SUM_ROWS_EXAMINED` / `performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0) AS `rows_examined_avg`,`performance_schema`.`events_statements_summary_by_digest`.`FIRST_SEEN` AS `first_seen`,`performance_schema`.`events_statements_summary_by_digest`.`LAST_SEEN` AS `last_seen`,`performance_schema`.`events_statements_summary_by_digest`.`DIGEST` AS `digest` from `performance_schema`.`events_statements_summary_by_digest` where (`performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_INDEX_USED` > 0 or `performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_GOOD_INDEX_USED` > 0) and `performance_schema`.`events_statements_summary_by_digest`.`DIGEST_TEXT`  not like 'SHOW%' order by round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_NO_INDEX_USED` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0) * 100,0) desc,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `statements_with_runtimes_in_95th_percentile`
---
-
-/*!50001 DROP TABLE IF EXISTS `statements_with_runtimes_in_95th_percentile`*/;
-/*!50001 DROP VIEW IF EXISTS `statements_with_runtimes_in_95th_percentile`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `statements_with_runtimes_in_95th_percentile` AS select `sys`.`format_statement`(`stmts`.`DIGEST_TEXT`) AS `query`,`stmts`.`SCHEMA_NAME` AS `db`,if(`stmts`.`SUM_NO_GOOD_INDEX_USED` > 0 or `stmts`.`SUM_NO_INDEX_USED` > 0,'*','') AS `full_scan`,`stmts`.`COUNT_STAR` AS `exec_count`,`stmts`.`SUM_ERRORS` AS `err_count`,`stmts`.`SUM_WARNINGS` AS `warn_count`,`sys`.`format_time`(`stmts`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`stmts`.`MAX_TIMER_WAIT`) AS `max_latency`,`sys`.`format_time`(`stmts`.`AVG_TIMER_WAIT`) AS `avg_latency`,`stmts`.`SUM_ROWS_SENT` AS `rows_sent`,round(ifnull(`stmts`.`SUM_ROWS_SENT` / nullif(`stmts`.`COUNT_STAR`,0),0),0) AS `rows_sent_avg`,`stmts`.`SUM_ROWS_EXAMINED` AS `rows_examined`,round(ifnull(`stmts`.`SUM_ROWS_EXAMINED` / nullif(`stmts`.`COUNT_STAR`,0),0),0) AS `rows_examined_avg`,`stmts`.`FIRST_SEEN` AS `first_seen`,`stmts`.`LAST_SEEN` AS `last_seen`,`stmts`.`DIGEST` AS `digest` from (`performance_schema`.`events_statements_summary_by_digest` `stmts` join `sys`.`x$ps_digest_95th_percentile_by_avg_us` `top_percentile` on(round(`stmts`.`AVG_TIMER_WAIT` / 1000000,0) >= `top_percentile`.`avg_us`)) order by `stmts`.`AVG_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `statements_with_sorting`
---
-
-/*!50001 DROP TABLE IF EXISTS `statements_with_sorting`*/;
-/*!50001 DROP VIEW IF EXISTS `statements_with_sorting`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `statements_with_sorting` AS select `sys`.`format_statement`(`performance_schema`.`events_statements_summary_by_digest`.`DIGEST_TEXT`) AS `query`,`performance_schema`.`events_statements_summary_by_digest`.`SCHEMA_NAME` AS `db`,`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR` AS `exec_count`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT`) AS `total_latency`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_MERGE_PASSES` AS `sort_merge_passes`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_MERGE_PASSES` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0),0) AS `avg_sort_merges`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_SCAN` AS `sorts_using_scans`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_RANGE` AS `sort_using_range`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_ROWS` AS `rows_sorted`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_ROWS` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0),0) AS `avg_rows_sorted`,`performance_schema`.`events_statements_summary_by_digest`.`FIRST_SEEN` AS `first_seen`,`performance_schema`.`events_statements_summary_by_digest`.`LAST_SEEN` AS `last_seen`,`performance_schema`.`events_statements_summary_by_digest`.`DIGEST` AS `digest` from `performance_schema`.`events_statements_summary_by_digest` where `performance_schema`.`events_statements_summary_by_digest`.`SUM_SORT_ROWS` > 0 order by `performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `statements_with_temp_tables`
---
-
-/*!50001 DROP TABLE IF EXISTS `statements_with_temp_tables`*/;
-/*!50001 DROP VIEW IF EXISTS `statements_with_temp_tables`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `statements_with_temp_tables` AS select `sys`.`format_statement`(`performance_schema`.`events_statements_summary_by_digest`.`DIGEST_TEXT`) AS `query`,`performance_schema`.`events_statements_summary_by_digest`.`SCHEMA_NAME` AS `db`,`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR` AS `exec_count`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_digest`.`SUM_TIMER_WAIT`) AS `total_latency`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_TABLES` AS `memory_tmp_tables`,`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_DISK_TABLES` AS `disk_tmp_tables`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_TABLES` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`COUNT_STAR`,0),0),0) AS `avg_tmp_tables_per_query`,round(ifnull(`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_DISK_TABLES` / nullif(`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_TABLES`,0),0) * 100,0) AS `tmp_tables_to_disk_pct`,`performance_schema`.`events_statements_summary_by_digest`.`FIRST_SEEN` AS `first_seen`,`performance_schema`.`events_statements_summary_by_digest`.`LAST_SEEN` AS `last_seen`,`performance_schema`.`events_statements_summary_by_digest`.`DIGEST` AS `digest` from `performance_schema`.`events_statements_summary_by_digest` where `performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_TABLES` > 0 order by `performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_DISK_TABLES` desc,`performance_schema`.`events_statements_summary_by_digest`.`SUM_CREATED_TMP_TABLES` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `user_summary`
---
-
-/*!50001 DROP TABLE IF EXISTS `user_summary`*/;
-/*!50001 DROP VIEW IF EXISTS `user_summary`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `user_summary` AS select if(`performance_schema`.`accounts`.`USER` is null,'background',`performance_schema`.`accounts`.`USER`) AS `user`,sum(`stmt`.`total`) AS `statements`,`sys`.`format_time`(sum(`stmt`.`total_latency`)) AS `statement_latency`,`sys`.`format_time`(ifnull(sum(`stmt`.`total_latency`) / nullif(sum(`stmt`.`total`),0),0)) AS `statement_avg_latency`,sum(`stmt`.`full_scans`) AS `table_scans`,sum(`io`.`ios`) AS `file_ios`,`sys`.`format_time`(sum(`io`.`io_latency`)) AS `file_io_latency`,sum(`performance_schema`.`accounts`.`CURRENT_CONNECTIONS`) AS `current_connections`,sum(`performance_schema`.`accounts`.`TOTAL_CONNECTIONS`) AS `total_connections`,count(distinct `performance_schema`.`accounts`.`HOST`) AS `unique_hosts`,`sys`.`format_bytes`(sum(`mem`.`current_allocated`)) AS `current_memory`,`sys`.`format_bytes`(sum(`mem`.`total_allocated`)) AS `total_memory_allocated` from (((`performance_schema`.`accounts` left join `sys`.`x$user_summary_by_statement_latency` `stmt` on(if(`performance_schema`.`accounts`.`USER` is null,'background',`performance_schema`.`accounts`.`USER`) = `stmt`.`user`)) left join `sys`.`x$user_summary_by_file_io` `io` on(if(`performance_schema`.`accounts`.`USER` is null,'background',`performance_schema`.`accounts`.`USER`) = `io`.`user`)) left join `sys`.`x$memory_by_user_by_current_bytes` `mem` on(if(`performance_schema`.`accounts`.`USER` is null,'background',`performance_schema`.`accounts`.`USER`) = `mem`.`user`)) group by if(`performance_schema`.`accounts`.`USER` is null,'background',`performance_schema`.`accounts`.`USER`) order by sum(`stmt`.`total_latency`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `user_summary_by_file_io`
---
-
-/*!50001 DROP TABLE IF EXISTS `user_summary_by_file_io`*/;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_file_io`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `user_summary_by_file_io` AS select if(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER`) AS `user`,sum(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`COUNT_STAR`) AS `ios`,`sys`.`format_time`(sum(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`)) AS `io_latency` from `performance_schema`.`events_waits_summary_by_user_by_event_name` where `performance_schema`.`events_waits_summary_by_user_by_event_name`.`EVENT_NAME` like 'wait/io/file/%' group by if(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER`) order by sum(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `user_summary_by_file_io_type`
---
-
-/*!50001 DROP TABLE IF EXISTS `user_summary_by_file_io_type`*/;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_file_io_type`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `user_summary_by_file_io_type` AS select if(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER`) AS `user`,`performance_schema`.`events_waits_summary_by_user_by_event_name`.`EVENT_NAME` AS `event_name`,`performance_schema`.`events_waits_summary_by_user_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`) AS `latency`,`sys`.`format_time`(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`MAX_TIMER_WAIT`) AS `max_latency` from `performance_schema`.`events_waits_summary_by_user_by_event_name` where `performance_schema`.`events_waits_summary_by_user_by_event_name`.`EVENT_NAME` like 'wait/io/file%' and `performance_schema`.`events_waits_summary_by_user_by_event_name`.`COUNT_STAR` > 0 order by if(`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_waits_summary_by_user_by_event_name`.`USER`),`performance_schema`.`events_waits_summary_by_user_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `user_summary_by_stages`
---
-
-/*!50001 DROP TABLE IF EXISTS `user_summary_by_stages`*/;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_stages`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `user_summary_by_stages` AS select if(`performance_schema`.`events_stages_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_stages_summary_by_user_by_event_name`.`USER`) AS `user`,`performance_schema`.`events_stages_summary_by_user_by_event_name`.`EVENT_NAME` AS `event_name`,`performance_schema`.`events_stages_summary_by_user_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`events_stages_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`events_stages_summary_by_user_by_event_name`.`AVG_TIMER_WAIT`) AS `avg_latency` from `performance_schema`.`events_stages_summary_by_user_by_event_name` where `performance_schema`.`events_stages_summary_by_user_by_event_name`.`SUM_TIMER_WAIT` <> 0 order by if(`performance_schema`.`events_stages_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_stages_summary_by_user_by_event_name`.`USER`),`performance_schema`.`events_stages_summary_by_user_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `user_summary_by_statement_latency`
---
-
-/*!50001 DROP TABLE IF EXISTS `user_summary_by_statement_latency`*/;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_statement_latency`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=TEMPTABLE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `user_summary_by_statement_latency` AS select if(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER`) AS `user`,sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`COUNT_STAR`) AS `total`,`sys`.`format_time`(sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`)) AS `total_latency`,`sys`.`format_time`(sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`MAX_TIMER_WAIT`)) AS `max_latency`,`sys`.`format_time`(sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_LOCK_TIME`)) AS `lock_latency`,sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_ROWS_SENT`) AS `rows_sent`,sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_ROWS_EXAMINED`) AS `rows_examined`,sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_ROWS_AFFECTED`) AS `rows_affected`,sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_NO_INDEX_USED`) + sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_NO_GOOD_INDEX_USED`) AS `full_scans` from `performance_schema`.`events_statements_summary_by_user_by_event_name` group by if(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER`) order by sum(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`) desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `user_summary_by_statement_type`
---
-
-/*!50001 DROP TABLE IF EXISTS `user_summary_by_statement_type`*/;
-/*!50001 DROP VIEW IF EXISTS `user_summary_by_statement_type`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=MERGE */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `user_summary_by_statement_type` AS select if(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER`) AS `user`,substring_index(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`EVENT_NAME`,'/',-1) AS `statement`,`performance_schema`.`events_statements_summary_by_user_by_event_name`.`COUNT_STAR` AS `total`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_TIMER_WAIT`) AS `total_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`MAX_TIMER_WAIT`) AS `max_latency`,`sys`.`format_time`(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_LOCK_TIME`) AS `lock_latency`,`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_ROWS_SENT` AS `rows_sent`,`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_ROWS_EXAMINED` AS `rows_examined`,`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_ROWS_AFFECTED` AS `rows_affected`,`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_NO_INDEX_USED` + `performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_NO_GOOD_INDEX_USED` AS `full_scans` from `performance_schema`.`events_statements_summary_by_user_by_event_name` where `performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_TIMER_WAIT` <> 0 order by if(`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER` is null,'background',`performance_schema`.`events_statements_summary_by_user_by_event_name`.`USER`),`performance_schema`.`events_statements_summary_by_user_by_event_name`.`SUM_TIMER_WAIT` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `version`
---
-
-/*!50001 DROP TABLE IF EXISTS `version`*/;
-/*!50001 DROP VIEW IF EXISTS `version`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`mariadb.sys`@`localhost` SQL SECURITY INVOKER */
-/*!50001 VIEW `version` AS select '1.5.1' AS `sys_version`,version() AS `mysql_version` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
 -- Final view structure for view `wait_classes_global_by_avg_latency`
@@ -5512,4 +4984,4 @@ USE `sys`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-21 15:09:23
+-- Dump completed on 2023-04-04 23:38:52
