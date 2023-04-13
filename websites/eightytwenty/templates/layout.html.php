@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/styles.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<title><?=$title?></title>
 	</head>
@@ -14,7 +15,9 @@
 <button class="login">Login</button>
 	</header>
 	<nav>
-		<ul>
+	<input type="checkbox" class="toggle-menu">
+            <div class="hamburger"></div>
+		<ul class= "menu">
 			<li><a href="/">Home</a></li>
 			<li><a href="/page/supplements">Supplements</a></li>
 			<li><a href="/page/protein">Protein</a></li>
