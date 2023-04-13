@@ -1,4 +1,4 @@
-/* import fonts
+/* import fonts */
 @import url('https://stockfont.org/?3e1218d9a01517d5734a1be9e67be4af797abff1230ab272235ec8ed759251d6');
 * {margin: 0; padding: 0;}
 
@@ -20,10 +20,10 @@ header h1 {float: left; margin-left: 20px;}
 
 
 /*sabina*/
-/*nav {width: 100%; background-color: #74a60a; overflow: auto;}*/
+nav {width: 100%; background-color: #74a60a; overflow: auto;}
 /*body > img {width: 100%; display: block;} -- what is this for?*/
 
-/*nav ul {width: 1000px; margin: auto; display: block; list-style-type: none;}
+nav ul {width: 1000px; margin: auto; display: block; list-style-type: none;}
 nav ul li {width: 25%; float: left; overflow: auto; text-align: center;}
 nav li {color: white; padding-top: 10px; display: block;}
 nav a {color: white; text-decoration: none}
@@ -103,7 +103,7 @@ ul>li>a.active::before {
 
 /*sabina*/
 header h1 {font-weight: normal;}
-/*
+
 h1 { font-size:4em; color: white; text-align: center; padding-top: 20px; text-shadow: 2px 2px 2px #000;}
 
 main {min-height: 50vh; background-color: #fff; width: 70vw; display: block; margin: auto; box-shadow: 0px 0px 10px #888; color:#444;}
@@ -165,7 +165,7 @@ table td input[type="submit"] {margin: 0; float: right; width: auto; padding: au
 .categories li {margin: 0; padding: 0.5em; font-size: 2em;}
 
 .products > img {max-height: 300px;}
-*/
+
 a:hover {color: #ccc !important;}
 
 .right {padding: 20px;}
@@ -174,7 +174,7 @@ main h1 {color: #666;}
 
 main img {display: block;}
 
-/*elizabeth*/
+/*Elizabeth*/
 /*hamburger icon*/
 .hamburger {
     position: relative;
@@ -276,4 +276,4 @@ nav > input:checked ~ .menu {
         box-shadow: 0 1px 0 black inset;
 
     }
-} 
+}
