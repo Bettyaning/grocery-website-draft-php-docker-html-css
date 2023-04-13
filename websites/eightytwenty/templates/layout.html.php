@@ -16,12 +16,12 @@
 	<nav>
 		<ul>
 			<li><a href="/">Home</a></li>
-			<li><a href="/">Supplements</a></li>
-			<li><a href="/">Protein</a></li>
-			<li><a href="/">Snacks</a></li>
-			<li><a href="/">Drinks</a></li>
-			<li><a href="/">Fresh</a></li>
-			<li><a href="/">Frozen</a></li>
+			<li><a href="/page/supplements">Supplements</a></li>
+			<li><a href="/page/protein">Protein</a></li>
+			<li><a href="/page/snacks">Snacks</a></li>
+			<li><a href="/page/drinks">Drinks</a></li>
+			<li><a href="/page/fresh">Fresh</a></li>
+			<li><a href="/page/frozen">Frozen</a></li>
 			<li><a href="/page/faq">FAQ</a></li>
 			<li><a href="/page/about">About us</a></li>
 		</ul>

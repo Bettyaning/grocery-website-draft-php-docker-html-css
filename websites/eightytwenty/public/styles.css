@@ -120,9 +120,4 @@ main h1 {color: #666;}
 
 main img {display: block;}
 
-.wrapper {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+

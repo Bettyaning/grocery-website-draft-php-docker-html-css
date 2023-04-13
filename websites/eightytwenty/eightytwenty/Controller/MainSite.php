@@ -10,12 +10,12 @@ class MainSite {
         }
 
         public function faq() {
-            $categories = $this->categoriesTable->findAll();
+          //  $categories = $this->categoriesTable->findAll();
             return [
             'template' => 'faq.html.php',
-            'title' => 'Jos Jobs - FAQ',
+            'title' => ' FAQ',
             'class' => 'home',
-            'categories' => $categories,
+           // 'categories' => $categories,
             'variables' => [] 
                 ];
         }
@@ -26,7 +26,7 @@ class MainSite {
 
             return [
             'template' => 'about.html.php',
-            'title' => 'Jos Jobs - About',
+            'title' => 'About',
             'class' => 'sidebar',
             // 'categories' => $categories,
             'variables' => [
@@ -51,7 +51,7 @@ public function apply() {
             $categories = $this->categoriesTable->findAll();
             return [
             'template' => 'apply.html.php',
-            'title' => 'Jos Jobs - Application Form',
+            'title' => 'Application Form',
             'class' => 'sidebar',
             'categories' => $categories,
             'variables' => [
@@ -118,6 +118,89 @@ public function success(){
                                 ];
         }
 
+        public function supplements(){
+            //$products = $this->jobsTable1->orderby('closingDate');
+            //$categories = $this->categoriesTable->findAll();
 
+            return [
+                'template' => 'supplements.html.php',
+                'title' => 'Supplements',
+                'class' => 'home',
+                //'categories' => $categories,
+                'variables' => [
+                ]
+                    ];
+        }
+
+        public function protein(){
+            //$products = $this->jobsTable1->orderby('closingDate');
+            //$categories = $this->categoriesTable->findAll();
+
+            return [
+                'template' => 'protein.html.php',
+                'title' => 'Protein',
+                'class' => 'home',
+                //'categories' => $categories,
+                'variables' => [
+                ]
+                    ];
+        }
+
+
+        public function snacks(){
+            //$products = $this->jobsTable1->orderby('closingDate');
+            //$categories = $this->categoriesTable->findAll();
+
+            return [
+                'template' => 'snacks.html.php',
+                'title' => 'Snacks',
+                'class' => 'home',
+                //'categories' => $categories,
+                'variables' => [
+                ]
+                    ];
+        }
+
+        public function drinks(){
+            //$products = $this->jobsTable1->orderby('closingDate');
+            //$categories = $this->categoriesTable->findAll();
+
+            return [
+                'template' => 'drinks.html.php',
+                'title' => 'Drinks',
+                'class' => 'home',
+                //'categories' => $categories,
+                'variables' => [
+                ]
+                    ];
+        }
+
+        public function fresh(){
+            //$products = $this->jobsTable1->orderby('closingDate');
+            //$categories = $this->categoriesTable->findAll();
+
+            return [
+                'template' => 'fresh.html.php',
+                'title' => 'Fresh',
+                'class' => 'home',
+                //'categories' => $categories,
+                'variables' => [
+                ]
+                    ];
+        }
+
+        public function frozen(){
+            //$products = $this->jobsTable1->orderby('closingDate');
+            //$categories = $this->categoriesTable->findAll();
+
+            return [
+                'template' => 'frozen.html.php',
+                'title' => 'Frozen',
+                'class' => 'home',
+                //'categories' => $categories,
+                'variables' => [
+                ]
+                    ];
+        }
 
 }
