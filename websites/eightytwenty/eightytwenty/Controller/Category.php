@@ -37,7 +37,7 @@ class Category {
         $locations = $this->jobsTable->findLocation($_GET['id']);
         }
 
-        return [
+        return [.
             'template' => 'category.html.php',
             'title' => 'Jos Jobs - ' . $category_name[0],
             'class' => 'sidebar',
