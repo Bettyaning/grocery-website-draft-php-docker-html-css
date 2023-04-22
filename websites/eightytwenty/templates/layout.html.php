@@ -15,7 +15,7 @@
 	</header>
 	<nav>
 		<ul>
-			<li><a href="/">Home</a></li>
+			<li><a href="/">Homee</a></li>
 			<li><a href="/">Supplements</a></li>
 			<li><a href="/">Protein</a></li>
 			<li><a href="/">Snacks</a></li>
