@@ -6,16 +6,37 @@
 		<title><?=$title?></title>
 	</head>
 	<body>
+
 	<header>
-	<a href="/"><img src="/images/logo.png"
-		width="250" 
-     height="260"/></a>
-		
-<button class="login">Login</button>
+
+	<div class="logo">
+	<a href="/"><img src="/images/updatedLogo.png"/></a>
+
+
+	<div class="loginform">
+	<form action = "login.php" method= "post">
+<label> Email</label>
+<input type="email" placeholder="email" name="email" class="email"/>
+<label> Password</label>
+<input type="password" placeholder="password" name="password" class="password"/>
+
+
+<input type="submit"  value ="SIGN IN" name="submit" />
+</form> <br>
+	<div class="searchbar">	
+	<form action="#">
+				<input type="text" name="search" placeholder="Search for anything" />
+				<input type="submit" name="submit" value="Search" />
+			</form>
 	</header>
+
+
+
 	<nav>
-		<ul>
-			<li><a href="/">Homee</a></li>
+	<input type="checkbox" class="toggle-menu">
+            <div class="hamburger"></div>
+            <ul class="menu">
+			<li><a href="/">Home</a></li>
 			<li><a href="/">Supplements</a></li>
 			<li><a href="/">Protein</a></li>
 			<li><a href="/">Snacks</a></li>
@@ -27,6 +48,8 @@
 
 	</nav>
 	<main class="<?=$class?>">
+	<p>put hottest products out on main page/deals/offers/sale etc.</p>
+	
     <?=$output?>
   </main>
   <footer>
