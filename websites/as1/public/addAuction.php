@@ -1,86 +1,63 @@
 <?php
 require '../header.php';
-?>
 
-
-<?php
-$server ='mysql';
+$server = 'mysql';
 $username = 'student';
 $password = 'student';
-
 $schema = 'as1';
 
 $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
 
 if (isset($_POST['submit'])) {
-    if (isset($_POST['submit'])) {
+    $stmt = $pdo->prepare('INSERT INTO as1.auction (title, description, categoryID, endDate, currentBid)
+                           VALUES (:title, :description, :categoryID, :endDate, :currentBid)');
 
-        $stmt = $pdo-> prepare('INSERT INTO as1.auction(title, description, categoryId, endDate)
-        VALUES (:title, :description, :categoryId, :endDate)');
+    $values = [
+        'title' => $_POST['title'],
+        'description' => $_POST['description'],
+        'categoryID' => $_POST['categoryID'],
+        'endDate' => $_POST['endDate'],
+        'currentBid' => $_POST['currentBid']
+    ];
 
-
-$values = [
-    'title' => $_POST['title'],
-    'description' => $_POST['description'],
-    'categoryId' => $_POST['categoryId'],
-    'endDate' => $_POST['endDate'],
-];
-
-
-$stmt ->execute($values);
-echo 'Auction Added';
-
-    }
+    $stmt ->execute($values);
+        echo 'Auction Added';
 }
-
 else{
 ?>
 
+<h2>Add Auction</h2>
+
 <form action="addAuction.php" method="post">
+    <label>Title:</label>
+    <input type="text" name="title" />
 
-<label>Title: </label>
-<input type="text" name="title"/>
+    <label>Description:</label>
+    <textarea name="description"></textarea>
 
-<label>Description: </label>
-<textarea name="description"> </textarea>
+    <label>Category:</label>
+    <select name="categoryID">
+        <?php
+        $stmt = $pdo->prepare('SELECT * FROM as1.category');
+        $stmt->execute();
 
+        foreach ($stmt as $row) {
+            echo '<option value="' . $row['categoryID'] . '">' . $row['name'] . '</option>';
+        }
+        
+        ?>
+    </select>
 
-<label>Category: </label>
-<select name="categoryId">
+    <label>End Date:</label>
+    <input type="date" name="endDate" />
 
-<?php
+    <label>Current Bid:</label>
+    <input type="number" name="currentBid" />
 
-$stmt = $pdo->prepare('SELECT * FROM as1.category');
-$stmt->execute();
-
-foreach ($stmt as $row){
-    if ($row['categoryId'] == $Category['categoryId']){
-        echo'<option value="' . $row['categoryId'] . '" selected="selected">' . $row['name'] . '</option>';
-    }
-    else {
-        echo'<option value="' . $row['categoryId'] . '">'. $row['name'] . '</option>';
-    }
-}
-
-
-?>
-
-
-
-</select>
-
-
-
-<label>End Date: </label>
-<input type="date" name="endDate"/>
-
-<input type="submit" value="submit" name="submit"/>
-
+    <input type="submit" value="Submit" name="submit" />
 </form>
 
-
-
 <?php
-}
 require '../footer.php';
+        }
 ?>

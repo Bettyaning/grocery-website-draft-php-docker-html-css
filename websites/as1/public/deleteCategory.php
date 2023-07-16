@@ -13,11 +13,11 @@ $schema = 'as1';
 $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
 
     $stmt = $pdo-> prepare('DELETE FROM as1.category
-                            WHERE categoryId = :categoryId');
+                            WHERE categoryID = :categoryID');
 
 
 $values = [
-    'categoryId' => $_GET['categoryId'],
+    'categoryID' => $_GET['categoryID'],
 ];
 
 $stmt ->execute($values);

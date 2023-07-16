@@ -38,6 +38,16 @@ class DatabaseTable {
         $stmt->execute($criteria);
         return $stmt->fetch();
     }
+    public function search($row, $row1, $value) 
+    {
+$stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table .' WHERE ' . $row . ' LIKE :value OR ' . $row1 . ' LIKE :value');
+$stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
+$criteria = [
+'value' => $value
+];
+    $stmt->execute($criteria);
+    return $stmt->fetchAll();
+    }
 
     public function findWhere($row, $where, $value) 
     {
@@ -61,6 +71,32 @@ class DatabaseTable {
         return $stmt->fetch();
     }
 
+    public function findAllWhere2($where, $value, $value2) 
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table .' WHERE ' . $where . ' <> :value AND ' . $where . ' <> :value2');
+
+    $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
+    $criteria = [
+    'value' => $value,
+    'value2' => $value2
+    ];
+        $stmt->execute($criteria);
+        return $stmt->fetchAll();
+    }
+
+    public function findAllWhere3($where, $value, $value2) 
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table .' WHERE ' . $where . ' = :value OR ' . $where . ' = :value2');
+
+    $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
+    $criteria = [
+    'value' => $value,
+    'value2' => $value2
+    ];
+        $stmt->execute($criteria);
+        return $stmt->fetchAll();
+    }
+
     public function findAll() 
     {
         $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table . ''); 
@@ -71,7 +107,7 @@ class DatabaseTable {
 
     public function findName($value) 
     {
-        $stmt = $this->pdo->prepare('SELECT name FROM ' . $this->table . ' WHERE ' . $this->field . ' = :value'); 
+        $stmt = $this->pdo->prepare('SELECT category_name FROM ' . $this->table . ' WHERE ' . $this->field . ' = :value'); 
         $criteria = [
             'value' => $value
             ];
@@ -89,15 +125,16 @@ class DatabaseTable {
         return $stmt->fetchAll();
     }
 
-    public function findAnd($value, $row, $value2) 
+    public function findAnd($value, $value1, $row, $row1) 
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' WHERE ' . $this->field . ' = :value AND ' . $row . '  = :value2'); 
+        $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' WHERE ' . $row . ' = :value AND ' . $row1 . '  = :value1'); 
         $criteria = [
             'value' => $value,
-            'value2' => $value2
+            'value1' => $value1
             ];
-        $stmt->execute($criteria);
-        return $stmt->fetchAll();
+            $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
+            $stmt->execute($criteria);
+            return $stmt->fetchAll();
     }
 
     public function count($value) 
@@ -161,10 +198,18 @@ class DatabaseTable {
             }
             }
 
-            public function orderby($row) 
+            public function last($selected, $row) 
             {
-            $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' ORDER BY ' . $row . ' ASC LIMIT 10'); 
+            $stmt = $this->pdo->prepare('SELECT ' . $selected . ' FROM ' . $this->table . ' ORDER BY ' . $row . ' DESC LIMIT 1'); 
 
+            $stmt->execute();
+        return $stmt->fetch();
+            }
+
+            public function limit() 
+            {
+            $stmt = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' ORDER BY ' . $this->field . ' DESC LIMIT 3'); 
+            $stmt->setFetchMode(\PDO::FETCH_CLASS, $this->entityClass, $this->entityConstructor);
             $stmt->execute();
             return $stmt->fetchAll();
             }

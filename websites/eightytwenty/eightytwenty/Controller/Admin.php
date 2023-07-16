@@ -1,505 +1,318 @@
 <?php
-namespace JosJobs\Controller;
+namespace eightytwenty\Controller;
 class Admin {
-    private $categoriesTable;
-    private $jobsTable1;
-    private $applicantsTable;
-    private $usersTable;
-    private $jobsTable;
-    private $jobsTable3;
-    private $enquiryTable;
-    private $enquiryTable1;
 
+        private $productsTable;
+        private $categoriesTable;
+        private $usersTable;
+        private $productsTable1;
+        private $orderproductsTable;
+        private $ordersTable;
+        private $ordersTable1;
 
-public function __construct($categoriesTable, $jobsTable1, $applicantsTable, $usersTable, $jobsTable, $jobsTable3, $enquiryTable, $enquiryTable1) {
-        $this->categoriesTable = $categoriesTable;
-        $this->jobsTable1 = $jobsTable1;
-        $this->applicantsTable = $applicantsTable;
-        $this->usersTable = $usersTable;
-        $this->jobsTable = $jobsTable;
-        $this->jobsTable3 = $jobsTable3;
-        $this->enquiryTable = $enquiryTable;
-        $this->enquiryTable1 = $enquiryTable1;
-
-    }
-
-public function login($errors = []) {
-        return [
-        'template' => 'admin_home.html.php',
-        'title' => 'Jos Jobs - Admin Login',
-        'class' => 'sidebar',
-        'categories' => '',
-        'variables' => [
-            'errors' => $errors
-        ] 
-            ];
+        public function __construct($productsTable, $categoriesTable, $usersTable, $productsTable1, $orderproductsTable, $ordersTable, $ordersTable1) {
+            $this->productsTable = $productsTable;
+            $this->categoriesTable = $categoriesTable;
+            $this->usersTable = $usersTable;
+            $this->productsTable1 = $productsTable1;
+            $this->orderproductsTable = $orderproductsTable;
+            $this->ordersTable = $ordersTable;
+            $this->ordersTable1 = $ordersTable1;
         }
 
-public function nopermission() {
+        public function home() {
+            $categories = $this->categoriesTable->findAll();
+            $selected_categories = $this->categoriesTable->limit();
+            $products = $this->productsTable1->limit();
+
+              return [
+              'template' => 'admin_home.html.php',
+              'title' => 'Eighty Twenty - Admin',
+              'variables' => [
+                'selected_categories' => $selected_categories,
+                'products' => $products
+              ] 
+                  ];
+          }
+
+
+        public function allproducts() {
+            $categories = $this->categoriesTable->findAll();
+            $products = $this->productsTable->findAll();
+
             return [
-            'template' => 'nopermission.html.php',
-            'title' => 'Jos Jobs - No permission to access',
-            'class' => 'sidebar',
-            'categories' => '',
-            'variables' => [] 
+            'template' => 'admin_allproducts.html.php',
+            'title' => 'Eighty Twenty - All products',
+            'variables' => [
+                'products' => $products
+            ] 
                 ];
-            }
-
-public function logout() {
-       
-        if (isset($_SESSION['loggedin'])) {
-			unset($_SESSION['loggedin']);
-            unset($_SESSION['access']);
-            unset($_SESSION['id']);
-            header('location: /');
-		}
-        else {
-            header('location: /admin/login');
-        }
-            }
-    
-public function loginSubmit() {
-    $errors = $this->validateLogin($_POST['users']);
-    if (count($errors) == 0) {
-        $username = $_POST['users']['username'];
-        $password = $_POST['users']['password'];
-
-        $dbpassword = $this->usersTable->findWhere('password', 'username', $username);
-
-        if (password_verify($password, $dbpassword[0])) {
-            $_SESSION['loggedin'] = true;
-            $dbaccess = $this->usersTable->findWhere('access', 'username', $username);
-            if ($dbaccess[0] === 'Full') {
-            $_SESSION['access'] = 1;
-            }
-            else {
-                $_SESSION['access'] = 0;
-            }
-            $dbid = $this->usersTable->findWhere('id', 'username', $username);
-            $_SESSION['id'] = $dbid[0];
-            header('location: /admin/jobs');
-                }
-        else {
-            header('location: /admin/login');
-        }
-    }
-    else {
-        return $this->login($errors);
-    }
-                    }
-            
-public function jobs($errors = []) {
-        $categories = $this->categoriesTable->findAll();
-        $applicants = $this->applicantsTable->findAll();
-        if (isset($_GET['category'])) 
-        {
-            if ($_GET['category'] == 0)
-            {
-                header('location: /admin/jobs');
-            }
-            else {
-            $jobs = $this->jobsTable->find($_GET['category']);
-            }
-        }
-        else {
-            if ($_SESSION['access'] == 0)
-        {
-            $jobs = $this->jobsTable3->find($_SESSION['id']);
-        }
-        else
-        {
-            $jobs = $this->jobsTable1->findAll();
-        }
         }
 
-                    return [
-                    'template' => 'jobs.html.php',
-                    'title' => 'Jos Jobs - Job list',
-                    'class' => 'sidebar',
-                    'categories' => '',
-                    'variables' => [
-                        'jobs' => $jobs,
-                        'categories' => $categories,
-                        'applicants' => $applicants,
-                        'errors' => $errors
-                    ] 
-                        ];
-                    }
+        public function categories() {
+            $categories = $this->categoriesTable->findAll();
 
-    
-public function addcategorySubmit() {
-    $errors = $this->validateCategory($_POST['category']);
-    if (count($errors) == 0) {
-        $this->categoriesTable->save($_POST['category']);
-        
-        header('location: /admin/categories');
-    }
-    else
-    {
-        return $this->addcategory($errors);
-    }
-        }
-
-public function addcategory($errors = []) {
-        return [
-        'template' => 'addcategory.html.php',
-        'title' => 'Jos Jobs - Add Category',
-        'class' => 'sidebar',
-        'categories' => '',
-        'variables' => [
-            'errors' => $errors, 
-        ] 
-        ];
-        }
-public function editcategory() {
-    
-            if (isset($_GET['id'])) {
-                $categoryid = $_GET['id'];
-                $category = $this->categoriesTable->find($categoryid);
-                }
-                return [
-                'template' => 'editcategory.html.php',
-                'title' => 'Jos Jobs - Edit Category',
-                'class' => 'sidebar',
-                'categories' => '',
-                'variables' => [
-                 'category' => $category[0]
-                ] 
+            return [
+            'template' => 'categories.html.php',
+            'title' => 'Eighty Twenty - Categories',
+            'variables' => [
+                'categories' => $categories
+            ] 
                 ];
-                }
-public function editcategorySubmit() {
-    $errors = $this->validateCategory($_POST['category']);
-    if (count($errors) == 0) {
-            $this->categoriesTable->save($_POST['category']);
-        header('location: /admin/categories');
-                    }
-                    else {
-                        return $this->categories($errors);
-                    }
-                }
+        }
 
-public function deletecategorySubmit() {
+        public function error() {
+            $error = isset($_GET['error']) ? $_GET['error'] : '';
 
-            $this->categoriesTable->delete($_POST['category']['id']);
-            
-            header('location: /admin/categories');
-            }
-    
-public function deletejobSubmit() {
+            return [
+            'template' => 'error.html.php',
+            'title' => 'Eighty Twenty - Error',
+            'variables' => [
+                'error' => $error
+            ] 
+                ];
+        }
 
-                $this->jobsTable1->delete($_POST['job']['id']);
-                            
-                header('location: /admin/jobs');
-                }
-    
-public function archivejobSubmit() {
-            $this->jobsTable1->save($_POST['job']);
-                    header('location: /admin/jobs');
-                    }
+        public function deletecategorySubmit() {
 
-public function editjob() {
-
-        $categories = $this->categoriesTable->findAll();
-
-        if (isset($_GET['id'])) {
-
-            $jobid = $_GET['id'];
-
-            if ($_SESSION['access'] == 0)
-        {
-            $author = $this->jobsTable1->findS('authorId', $jobid);
-
-            if ($_SESSION['id'] == $author[0]) {
-
-                $job = $this->jobsTable1->find($jobid);
+            $products = $this->productsTable->find($_POST['id']);
+            if (empty($products)){
+                $this->categoriesTable->delete($_POST['id']);
+                header('location: /admin/categories');
             }
             else{
-            header('location: /admin/nopermission');
+                $error = 'Category can not be deleted if there is stock linked to the category. If you still wish to delete, remove the stock first.';
+header('location: /admin/error?error=' . urlencode($error));
+
             }
         }
-        else {
 
-            $job = $this->jobsTable1->find($jobid);
-        }
-        
-            return [
-            'template' => 'editjob.html.php',
-            'title' => 'Jos Jobs - Edit Job',
-            'class' => 'sidebar',
-            'categories' => '',
-            'variables' => [
-             'categories' => $categories,
-             'job' => $job[0]
-            ] 
-            ];
-            }
-        }
-public function editjobSubmit() {
-    $errors = $this->validateJob($_POST['job']);
-    if (count($errors) == 0) {
-                $this->jobsTable1->save($_POST['job']);
-                
-                header('location: /admin/jobs');
-                }
-    else {
-        return $this->jobs($errors);
-    }
-            }
+        public function edit() {
 
-public function addjob($errors = []) {
-        $categories = $this->categoriesTable->findAll();
-        return [
-        'template' => 'addjob.html.php',
-        'title' => 'Jos Jobs - Add Job',
-        'class' => 'sidebar',
-        'categories' => '',
-        'variables' => [
-        'categories' => $categories,
-        'errors' => $errors
-                    ] 
-                ];
-                        }
-public function addjobSubmit() {
-    $errors = $this->validateJob($_POST['job']);
-    if (count($errors) == 0) {
-                $this->jobsTable1->save($_POST['job']);
-                            
-                header('location: /admin/jobs');
-    }
-    else {
-        return $this->addjob($errors);
-    }
-                            }
+                $product_id = $_GET['id'];
 
-public function categories($errors = []) {
-        $categories = $this->categoriesTable->findAll();
+                $product = $this->productsTable1->find($product_id);
+                $categories = $this->categoriesTable->findAll();
+
             
-            return [
-                        'template' => 'categories.html.php',
-                        'title' => 'Jos Jobs - Categories',
-                        'class' => 'sidebar',
-                        'categories' => '',
-                        'variables' => [
-                         'categories' => $categories,
-                         'errors' => $errors
-                        ] 
-                        ];
-                        }
-
-public function users($errors = []) {
-        $users = $this->usersTable->findAll();
-        
-        return [
-        'template' => 'users.html.php',
-        'title' => 'Jos Jobs - Users',
-        'class' => 'sidebar',
-        'categories' => '',
-        'variables' => [
-            'users' => $users,
-            'errors' => $errors
-        ] 
-            ];}
-public function edituser() {
-        if (isset($_GET['id'])) {
-            $userid = $_GET['id'];
-            $user = $this->usersTable->find($userid);
-            }
-            return [
-            'template' => 'edituser.html.php',
-            'title' => 'Jos Jobs - Edit User',
-            'class' => 'sidebar',
-            'categories' => '',
-            'variables' => [
-                'user' => $user[0]
-            ] 
-            ];
-            }
-public function edituserSubmit() {
-    $errors = $this->validateUser($_POST['users']);
-    if (count($errors) == 0) { 
-            
-            $criteria = [
-                'id' => $_POST['users']['id'],
-                'fullname' => $_POST['users']['fullname'],
-                'company' => $_POST['users']['company'],
-                'username' => $_POST['users']['username'],
-                'password' => password_hash($_POST['users']['password'], PASSWORD_DEFAULT),
-                'access' => $_POST['users']['access']
-            ];
-
-            $this->usersTable->save($criteria);
-
-            header('location: /admin/users');
-                }
-    else{
-        return $this->users($errors);
-    }
-            }
-
-public function deleteuserSubmit() {
-
-                $this->usersTable->delete($_POST['users']['id']);
-                            
-                header('location: /admin/users');
-                }
-
-public function adduser($errors = []) {
-            
-            return [
-            'template' => 'adduser.html.php',
-            'title' => 'Jos Jobs - Add User',
-            'class' => 'sidebar',
-            'categories' => '',
-            'variables' => [
-                'errors' => $errors
-            ] 
-                ];
-                        }
-public function adduserSubmit() {
-    $errors = $this->validateUser($_POST['users']);
-    if (count($errors) == 0) { 
-        
-            $criteria = [
-                    'fullname' => $_POST['users']['fullname'],
-                    'company' => $_POST['users']['company'],
-                    'username' => $_POST['users']['username'],
-                    'password' => password_hash($_POST['users']['password'], PASSWORD_DEFAULT),
-                    'access' => $_POST['users']['access']
-                ];
-
-                $this->usersTable->save($criteria);
-
-                header('location: /admin/users');
-
-    }
-    else {
-        return $this->adduser($errors);
-    }
-                            }
-
-public function applicants() {
-            if (isset($_GET['id'])) 
-                {
-                $jobid = $_GET['id'];
-
-                if ($_SESSION['access'] == 0)
-                {
-                    $author = $this->jobsTable1->findS('authorId', $jobid);
-        
-                    if ($_SESSION['id'] == $author[0]) {
-        
-                        $job = $this->jobsTable1->find($jobid);
-                        $applicants = $this->applicantsTable->find($jobid);
-                    }
-                    else{
-                    header('location: /admin/nopermission');
-                    }
-                }
-                else {
-                $job =  $this->jobsTable1->find($jobid);
-                $applicants = $this->applicantsTable->find($jobid);
-                }
-                }
-                        
                 return [
-                'template' => 'applicants.html.php',
-                'title' => 'Jos Jobs - Applicants',
-                'class' => 'sidebar',
-                'categories' => '',
+                'template' => 'edit.html.php',
+                'title' => 'Eighty Twenty - Edit',
                 'variables' => [
-                'applicants' => $applicants,
-                'job' => $job[0]
+                 'product' => $product[0],
+                 'categories' => $categories
+
                 ] 
                 ];
                 }
 
-public function enquiries() {
-        if (isset($_GET['status'])) 
-        {
-            $status = $_GET['status'];
-            if ($_GET['status'] == 1)
-            {
-                $enquiries = $this->enquiryTable->find($status);
-            }
-            else 
-            {
-            $status = 0;
-            $enquiries = $this->enquiryTable->find($status);
+                public function editSubmit() {
+                        
+                        $this->productsTable1->save($_POST['products']);
+            
+                        header('location: /admin/allproducts');
+
+                }
+
+                public function deleteSubmit() {
+                    
+                    $this->productsTable1->delete($_POST['id']);
+        
+                    header('location: /admin/allproducts');
 
             }
+
+            public function addcategory() {
+            
+                return [
+                'template' => 'addcategory.html.php',
+                'title' => 'Eighty Twenty - Add category',
+                'variables' => [
+
+                ] 
+                ];
+                }
+
+            public function addcategorySubmit() {
+                        
+                $this->categoriesTable->save($_POST['category']);
+    
+                header('location: /admin/categories');
+
         }
-        else {
-            $enquiries = $this->enquiryTable->findAll();
-        }
+
+        public function product() {
+            $categories = $this->categoriesTable->findAll();
+
+            $product = $this->productsTable1->find($_GET['id']);
+
             return [
-            'template' => 'enquiries.html.php',
-            'title' => 'Jos Jobs - Enquiries',
-            'class' => 'sidebar',
-            'categories' => '',
+            'template' => 'product.html.php',
+            'title' => 'Eighty Twenty - Sign In',
             'variables' => [
-                    'enquiries' => $enquiries
-                        ] 
-                    ];
-            }
-public function enquiriesSubmit() {
-                $this->enquiryTable1->save($_POST['enquiry']);
+                'product' => $product[0]
+            ] 
+                ];
+        }
+
+
+        public function addadmin() {
+
+            
+            return [
+            'template' => 'addadmin.html.php',
+            'title' => 'Eighty Twenty - Add admin',
+            'variables' => [
+            ] 
+                ];
+        }
+
+        public function addadminSubmit() {
+                        
+            $this->usersTable->save($_POST['users']);
+
+            header('location: /admin/accounts');
+
+    }
+
+    public function accounts() {
+
+        $users = $this->usersTable->findAll();
+            
+        return [
+        'template' => 'accounts.html.php',
+        'title' => 'Eighty Twenty - Accounts',
+        'variables' => [
+            'users' => $users
+        ] 
+            ];
+    }
+
+        public function addproduct() {
+
+            $categories = $this->categoriesTable->findAll();
+
+            return [
+            'template' => 'addproduct.html.php',
+            'title' => 'Eighty Twenty - Add product',
+            'variables' => [
+                'categories' => $categories
+            ] 
+                ];
+        }
+
+        public function addproductSubmit() {
+            
+            $targetDirectory = "images/";
+            $fileName = basename($_FILES["picture"]["name"]);
+            $targetFilePath = $targetDirectory . $fileName;
+            $extension = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+            $fileName = uniqid() . '.' . $extension;
+            $allowTypes = ['png','jpg','jpeg'];
+
+            if(in_array($extension, $allowTypes)){
+            
+                $targetFilePath = $targetDirectory . $fileName;
+                move_uploaded_file($_FILES['picture']['tmp_name'], $targetFilePath);
                 
-                header('location: /admin/enquiries?status=1');
-                }
-
-
-public function validateLogin($user) {
-    $errors = [];
-    if ($user['username'] == '') {
-    $errors[] = 'You must enter a username';
-    }
-    if ($user['password'] == '') {
-    $errors[] = 'You must enter a password';
-    }
-    return $errors;
-    }
-public function validateCategory($category) {
-        $errors = [];
-        if ($category['name'] == '') {
-        $errors[] = 'You must enter a category name';
-        }
-        return $errors;
+                $criteria = [
+                    'title' => $_POST['products']['title'],
+                    'description' => $_POST['products']['description'],
+                    'nutrition' => $_POST['products']['nutrition'],
+                    'category_id' => $_POST['products']['category_id'],
+                    'price' => $_POST['products']['price'],
+                    'qty' => $_POST['products']['qty'],
+                    'batch' => $_POST['products']['batch'],
+                    'picture' => $fileName
+                ];
+                
+                $this->productsTable->save($criteria);
+    
+                header('location: /admin/allproducts');
+            }
+            else {
+                echo 'There was an error uploading the image. Please re-try!';
+            }
         }
 
-public function validateJob($job) {
-            $errors = [];
-            if ($job['title'] == '') {
-            $errors[] = 'You must enter a job title';
+        public function orders() {
+
+            $categories = $this->categoriesTable->findAll();
+
+            $orders = $this->ordersTable->findAllWhere2('status', 'Cancelled', 'Completed');
+            $products = array();
+            $quantities = array();
+        
+            foreach ($orders as $order) {
+                $product_ids = $this->orderproductsTable->find($order->order_id);
+        
+                foreach ($product_ids as $product_id) {
+                    $product = $this->productsTable1->find($product_id->product_id);
+                    $products[$order->order_id][] = $product[0];
+                    $quantities[$product_id->product_id] = $product_id->quantity;
+                }
             }
-            if ($job['description'] == '') {
-                $errors[] = 'You must enter a job description';
+
+            return [
+            'template' => 'orders.html.php',
+            'title' => 'Eighty Twenty - Order management',
+            'variables' => [
+                'orders' => $orders,
+                    'products' => $products,
+                    'quantities' => $quantities
+            ] 
+                ];
+        }
+
+        public function fulfilled() {
+
+            $orders = $this->ordersTable->findAllWhere3('status', 'Cancelled', 'Completed');
+            $products = array();
+            $quantities = array();
+        
+            foreach ($orders as $order) {
+                $product_ids = $this->orderproductsTable->find($order->order_id);
+        
+                foreach ($product_ids as $product_id) {
+                    $product = $this->productsTable1->find($product_id->product_id);
+                    $products[$order->order_id][] = $product[0];
+                    $quantities[$product_id->product_id] = $product_id->quantity;
                 }
-            if ($job['salary'] == '') {
-                $errors[] = 'You must enter a salary';
-                    }
-            if ($job['closingDate'] == '') {
-                $errors[] = 'You must select a closing date';
-                        }
-            if ($job['location'] == '') {
-                $errors[] = 'You must enter a location';
-                    }
-            return $errors;
             }
-public function validateUser($users) {
-                $errors = [];
-                if ($users['fullname'] == '') {
-                $errors[] = 'You must enter a full name';
-                }
-                if ($users['company'] == '') {
-                    $errors[] = 'You must enter a company';
+
+            return [
+            'template' => 'fulfilled.html.php',
+            'title' => 'Eighty Twenty - Fulfilled orders',
+            'variables' => [
+                'orders' => $orders,
+                    'products' => $products,
+                    'quantities' => $quantities
+            ] 
+                ];
+        }
+
+        public function changestatusSubmit() {
+                        
+            $this->ordersTable1->save($_POST['orders']);
+
+            header('location: /admin/orders');
+
+    }
+
+
+    public function logout() {
+       
+                    if (isset($_SESSION['loggedin'])) {
+                        unset($_SESSION['loggedin']);
+                        unset($_SESSION['access']);
+                        unset($_SESSION['basket']);
+                        unset($_SESSION['user']);
+                        header('location: /page/home');
                     }
-                if ($users['username'] == '') {
-                    $errors[] = 'You must enter a username';
+                    else {
+                        header('location: /page/login');
+                    }
                         }
-                if ($users['password'] == '') {
-                    $errors[] = 'You must enter a password';
-                            }
-                return $errors;
-                }
+
 }
-    ?>
+?>

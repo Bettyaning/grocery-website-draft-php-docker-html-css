@@ -14,12 +14,12 @@ $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $passw
 
 if (isset($_POST['submit'])) {
     $stmt = $pdo-> prepare('UPDATE as1.auction
-                                SET id = :id, description = :description, categoryId = :categoryId, endDate = :endDate
-                                WHERE id = :id');
+                                SET auctionID = :auctionID, description = :description, categoryId = :categoryId, endDate = :endDate
+                                WHERE auctionID = :auctionID');
 
 
 $values = [
-    'id' => $_POST['id'],  
+    'auctionID' => $_POST['auctionID'],  
     'title' => $_POST['title'],
     'description' => $_POST['description'],
     'categoryId' => $_POST['categoryId'],
@@ -37,14 +37,14 @@ echo '<a href="index.php"> Back to Homepage</a>';
 
 
 
-else if(isset($_GET['id'])) {
+else if(isset($_GET['auctionID'])) {
 
-$auctionStmt = $pdo->prepare('SELECT * FROM as1.auction WHERE id = :id');
+$auctionStmt = $pdo->prepare('SELECT * FROM as1.auction WHERE auctionID = :auctionID');
 
 
 
 $values = [
-    'id' => $_GET['id']
+    'auctionID' => $_GET['auctionID']
 ];
 
 
@@ -54,7 +54,7 @@ $auction = $auctionStmt->fetch();
 
     ?>
 <form action ="editauction.php" method="POST">
-    <input type="hidden" name="id" value="<?php echo $auction['id']; ?>"/>
+    <input type="hidden" name="auctionID" value="<?php echo $auction['auctionID']; ?>"/>
 
 <label>auction title </label>
 <input type="text" name="title" value="<?php echo $auction['title']; ?>"/>

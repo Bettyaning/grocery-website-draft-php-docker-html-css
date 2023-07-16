@@ -1,93 +1,53 @@
 <?php
 require '../header.php';
-
 ?>
-<?php
 
-$server ='mysql';
+<?php
+$server = 'mysql';
 $username = 'student';
 $password = 'student';
-
 $schema = 'as1';
 
 $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
 
 if (isset($_POST['submit'])) {
-    $stmt = $pdo-> prepare('UPDATE as1.category
-                                SET name = :name, categoryId = :categoryId
-                                WHERE categoryId = :categoryId');
+    $stmt = $pdo->prepare('UPDATE as1.category
+                           SET name = :name
+                           WHERE categoryID = :categoryID');
 
+    $values = [
+        'name' => $_POST['name'],
+        'categoryID' => $_POST['categoryID'],
+    ];
 
-$values = [
-    'name' => $_POST['name'],
-    'categoryId' => $_POST['categoryId'],
-    
-];
+    $stmt->execute($values);
 
-$stmt ->execute($values);
+    echo '<p>' . $_POST['name'] . ' Category has been successfully EDITED</p>';
+    echo '<a href="adminCategories.php">Back to Categories</a>';
+} elseif (isset($_GET['categoryID'])) {
+    $CategoryStmt = $pdo->prepare('SELECT * FROM as1.category WHERE categoryID = :categoryID');
 
-echo ' <p>' . $_POST['name'] . ' Category has been successfully EDITED </p>';
+    $values = [
+        'categoryID' => $_GET['categoryID'],
+    ];
 
-echo '<a href="adminCategories.php"> Back to Categories</a>';
-
-}
-
-
-
-
-else if(isset($_GET['categoryId'])) {
-
-$CategoryStmt = $pdo->prepare('SELECT * FROM as1.category WHERE categoryId = :categoryId');
-
-
-
-$values = [
-    'categoryId' => $_GET['categoryId']
-    
-];
-
-
-$CategoryStmt->execute($values);
-
-$Category = $CategoryStmt->fetch();
-
+    $CategoryStmt->execute($values);
+    $Category = $CategoryStmt->fetch();
     ?>
-<form action ="editCategory.php" method="POST">
-    <input type="hidden" name="categoryId" value="<?php echo $Category['categoryId']; ?>"/>
 
-<label>Category name </label>
-<input type="text" name="name" value="<?php echo $Category['name']; ?>"/>
+    <form action="editCategory.php" method="POST">
+        <input type="hidden" name="categoryID" value="<?php echo $Category['categoryID']; ?>" />
 
+        <label>Category name</label>
+        <input type="text" name="name" value="<?php echo $Category['name']; ?>" />
 
+        <input type="submit" value="Submit" name="submit" />
+    </form>
 
-<?php
-
-$stmt = $pdo->prepare('SELECT * FROM as1.category');
-$stmt->execute();
-
-
-
-
-foreach($stmt as $row){
-    if ($row['categoryId'] == $Category['categoryId']) {
-        echo '<option value"' . $row['categoryId'] . '" selected=">' . '</option>';
-    }
-    else{
-        echo '<option value"' . $row['categoryId'] .  '">'. '</option>';
-    }
-}
-
-?>
-</select>
-
-    <input type="submit" value="submit" name="submit"/>
-</form>
-<?php
+    <?php
 }
 ?>
-
 
 <?php
 require '../footer.php';
 ?>
-

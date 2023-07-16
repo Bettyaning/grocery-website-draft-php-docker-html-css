@@ -13,10 +13,10 @@ $schema = 'as1';
 
 $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
 
-$stmt = $pdo->prepare('SELECT * FROM as1.auction WHERE id = :id');
+$stmt = $pdo->prepare('SELECT * FROM as1.auction WHERE auctionID = :auctionID');
 
 $values = [
-    'id' => $_GET['id']
+    'auctionID' => $_GET['auctionID']
 ];
 
 
@@ -26,12 +26,21 @@ $row = $stmt->fetch();
 
 
 echo '<h1>' . $row['title'] . '</h1>';
+echo '<br>' . '</br>';
+
 echo '<p>' . $row['description']  . '</p>';
 
 
 
+echo '<br>' . '</br>';
 
 echo '<p>Ende Date ' . $row['endDate']  . '</p>';
+echo '<br>' . '</br>';
+
+echo '<li><a href="editAuction.php?auctionID=' . $row['auctionID'] . '">' . 'Edit Auction' . '</a></li>';
+echo '<li><a href="deleteAuction.php?auctionID=' . $row['auctionID'] . '">' . 'Delete Auction' . '</a></li>';
+
+
 
 ?>
 

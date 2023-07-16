@@ -6,6 +6,7 @@ require '../header.php';
 
 <?php
 unset($_SESSION['loggedin']);
+unset($_SESSION['admin']);
 echo '<p>You are logged out</p>';
 
 

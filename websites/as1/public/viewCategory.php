@@ -1,62 +1,59 @@
 <?php
 require '../header.php';
 
-?>
-<a href="addAuction.php">Add Auction</a>
-<?php
-if (isset($_GET['categoryId'])) {
 
 
-$server ='mysql';
+
+if (isset($_GET['categoryID'])){
+
+$server = 'mysql';
 $username = 'student';
 $password = 'student';
-
 $schema = 'as1';
 
 $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
 
-$categoryStmt = $pdo->prepare('SELECT * FROM as1.category WHERE categoryId = :categoryId');
-$auctionStmt = $pdo->prepare('SELECT * FROM as1.auction WHERE categoryId = :categoryId');
+$AuctionStmt = $pdo->prepare('SELECT * FROM as1.auction WHERE categoryID = :categoryID');
+$CategoryStmt = $pdo->prepare('SELECT * FROM as1.category WHERE categoryID = :categoryID');
 
 $values = [
-    'categoryId' => $_GET['categoryId']
+    'categoryID' => $_GET['categoryID']
 ];
 
-$categoryStmt->execute($values);
-$auctionStmt->execute($values);
+$CategoryStmt->execute($values);
+$AuctionStmt->execute($values);
 
+$Category = $CategoryStmt->fetch();
 
-$category = $categoryStmt->fetch();
-
-echo '<h2>Category name: ' . $category['name'] . '</h2>';
-
+echo '<h1>' . $Category['name'] . '</h1>';
 
 echo '<ul>';
-
-foreach ($auctionStmt as $auction){
+foreach ($AuctionStmt as $Auction){
     echo '<ul class="productList">';
 
+    echo '<li>';
     
    echo '<img src="product.png" alt="product name">';
    echo '<article>';
-    echo '<h2>Product name: ' . $auction['title'].'</h2>';
-    echo '<p>' . $auction['description'] . '</p>';
+    echo '<h2>' . $Auction['title'] . '</h2>';
+    echo '<br>' . '</br>';
+    echo '<p>' . $Auction['description'] . '</p>';
+    echo '<br>' . '</br>';
+    echo '<p> End Date: ' . $Auction['endDate'] . '</p>';
+echo '</li>';
+echo '<li><a href="editAuction.php?auctionID=' . $Auction['auctionID'] . '">' . 'Edit Auction' . '</a></li>';
 
-    echo '<time>Time left: ' . $auction['endDate'] . '</time>';
-    echo '<li><a href="auction.php?id=' . $auction['id']. '">' . 'View Auction </a></li>';
-    echo '<li><a href="editAuction.php?id=' . $auction['id']. '">' . 'Edit Auction </a></li>';
-    echo '<li><a href="deleteAuction.php?id=' . $auction['id']. '">' . 'Delete Auction </a></li>';
-    echo '</article>';
+echo '<li><a href="auction.php?auctionID=' . $Auction['auctionID'] . '">' . 'View Auction'. '</a></li>';
+
 
 }
+
 echo '</ul>';
 
+
 }
-?>
-
-
+        ?>
 
 <?php
-
 require '../footer.php';
 ?>

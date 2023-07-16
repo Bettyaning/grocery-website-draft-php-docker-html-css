@@ -1,6 +1,6 @@
 <?php
 namespace AS;
-//ch
+
 class EntryPoint {
     private $routes;
     public function __construct(\eightytwenty\Routes $routes) {
@@ -27,23 +27,20 @@ public function run(){
             $functionName = $functionName . 'Submit';
             }
         $controller = $this->routes->getController($controllerName);
-    
         $page = $controller->$functionName();
 
-if ($controllerName !== 'admin'){
-    $output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
-    $title = $page['title'];
-    $class = $page['class'];
-    //$categories = $page['categories'];
-    require  '../templates/layout.html.php';
-}
-else{
-    $output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
-    $title = $page['title'];
-    $class = $page['class'];
-    //$categories = $page['categories'];
-    require  '../templates/admin_layout.html.php';
-}
+        if ($controllerName !== 'admin'){
+            $output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
+            $title = $page['title'];
+            $categories = $page['categories'];
+            require  '../templates/layout.html.php';
+        }
+        else{
+            $output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
+            $title = $page['title'];
+            require  '../templates/admin_layout.html.php';
+        }
+
 
 }
 
@@ -55,3 +52,4 @@ function loadTemplate($fileName, $templateVars) {
     return $contents;
     }
 }
+?>

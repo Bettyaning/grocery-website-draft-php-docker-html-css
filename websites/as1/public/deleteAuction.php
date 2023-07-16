@@ -13,11 +13,11 @@ $schema = 'as1';
 $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
 
     $stmt = $pdo-> prepare('DELETE FROM as1.auction
-                            WHERE id = :id');
+                            WHERE auctionID = :auctionID');
 
 
 $values = [
-    'id' => $_GET['id'],
+    'auctionID' => $_GET['auctionID'],
 ];
 
 $stmt ->execute($values);
